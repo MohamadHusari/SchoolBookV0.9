@@ -1,0 +1,23 @@
+package Secretary;
+
+import javax.swing.JPanel;
+import javax.swing.JTable;
+import javax.swing.JComboBox;
+
+public class AssocciateClassUI extends JPanel {
+	private final JTable tblClass = new JTable();
+	private final JTable tblStudent = new JTable();
+
+	/**
+	 * Create the panel.
+	 */
+	public AssocciateClassUI() {
+		setLayout(null);
+		tblClass.setBounds(146, 50, 62, 250);
+		
+		add(tblClass);
+		tblStudent.setBounds(315, 50, 87, 250);
+		
+		add(tblStudent);
+	}
+}

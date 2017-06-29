@@ -1,0 +1,177 @@
+package Secretary;
+
+import javax.swing.JPanel;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JPopupMenu;
+import javax.swing.SwingConstants;
+
+import OurMessage.Message;
+import OurMessage.QTypes;
+import User.HomeUI;
+import chat.Client;
+import sysAdmin.sysAdminHomeUI;
+
+import java.awt.BorderLayout;
+import java.awt.Component;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.JLabel;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.Color;
+
+public class SecretaryHomeUI extends JPanel {
+	private JPanel menubtnspnl;
+	private JPanel viewpanel;
+	private final JButton btnCreate = new JButton("");
+	private JButton btnAssocciate;
+	private JButton btnExcep;
+	private JButton btnExRes;
+	/**
+	 * Create the panel.
+	 */
+	public SecretaryHomeUI() {
+		setBackground(Color.WHITE);
+		
+		setBounds(10, 59, 424, 300);
+		setLayout(null);
+		
+		menubtnspnl = new JPanel();
+		menubtnspnl.setBackground(Color.WHITE);
+		menubtnspnl.setBounds(0, 0, 177, 300);
+		add(menubtnspnl);
+		menubtnspnl.setLayout(null);
+		
+		
+		//Button Items
+		//Menu Item 1:
+		JLabel iconLabel = new JLabel(new ImageIcon("img\\Secretary\\SecretaryHomeUI\\Add-icon.png"));
+		JLabel clickMe = new JLabel("Creating Semester", SwingConstants.CENTER);
+		btnCreate.setLayout(new BorderLayout());
+		btnCreate.add(iconLabel, BorderLayout.WEST);
+		btnCreate.add(clickMe, BorderLayout.CENTER);
+		btnCreate.setOpaque(false);
+		btnCreate.setContentAreaFilled(false);
+		btnCreate.setBorderPainted(false);
+		btnCreate.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				//((SecretaryHomeUI)((HomeUI)Client.clientGUI).innerpanel).ChangeSJPanel(new CreatingSemesterUI());
+				ChangeJPanel(new CreatingSemesterUI());
+				setbuttons(1);
+				//Disable this button and enable the rest
+			}
+		});
+		btnCreate.setBounds(0, 11, 177, 35);
+		menubtnspnl.add(btnCreate);
+		//Menu Item 2:
+		JLabel iconLabelAsc = new JLabel(new ImageIcon("img\\Secretary\\SecretaryHomeUI\\Group-icon.png"));
+		JLabel clickMeAsc = new JLabel("Assocciating Class", SwingConstants.CENTER);
+		btnAssocciate = new JButton("");
+		btnAssocciate.setLayout(new BorderLayout());
+		btnAssocciate.add(iconLabelAsc, BorderLayout.WEST);
+		btnAssocciate.add(clickMeAsc, BorderLayout.CENTER);
+		btnAssocciate.setOpaque(false);
+		btnAssocciate.setContentAreaFilled(false);
+		btnAssocciate.setBorderPainted(false);
+		btnAssocciate.setBounds(0, 46, 177, 35);
+		menubtnspnl.add(btnAssocciate);
+		//Menu Item 3:
+		JLabel iconLabelExc = new JLabel(new ImageIcon("img\\Secretary\\SecretaryHomeUI\\Find-person-icon.png"));
+		JLabel clickMeExc = new JLabel("Exception Student", SwingConstants.CENTER);
+		btnExcep = new JButton("");
+		btnExcep.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				Client.client.handleMessageFromClientUI(new Message("SELECT * FROM requests WHERE aprove!=2;",QTypes.getrequests));
+				//Disable this button and enable the rest
+				setbuttons(2);
+				//ChangeJPanel(new ExceptionStudentsUI());
+			}
+		});
+		btnExcep.setLayout(new BorderLayout());
+		btnExcep.add(iconLabelExc, BorderLayout.WEST);
+		btnExcep.add(clickMeExc, BorderLayout.CENTER);
+		btnExcep.setOpaque(false);
+		btnExcep.setContentAreaFilled(false);
+		btnExcep.setBorderPainted(false);
+		btnExcep.setBounds(0, 81, 177, 35);
+		menubtnspnl.add(btnExcep);
+		//Menu Item 4:
+		JLabel iconLabelRes = new JLabel(new ImageIcon("img\\Secretary\\SecretaryHomeUI\\Pencil-icon.png"));
+		JLabel clickMeRes = new JLabel("Update Response", SwingConstants.CENTER);
+		btnExRes = new JButton("");
+		btnExRes.setLayout(new BorderLayout());
+		btnExRes.add(iconLabelRes, BorderLayout.WEST);
+		btnExRes.add(clickMeRes, BorderLayout.CENTER);
+		btnExRes.setOpaque(false);
+		btnExRes.setContentAreaFilled(false);
+		btnExRes.setBorderPainted(false);
+		btnExRes.setBounds(0, 116, 177, 35);
+		menubtnspnl.add(btnExRes);
+		//===============================
+		viewpanel = new JPanel();
+		viewpanel.setBackground(Color.WHITE);
+		viewpanel.setBounds(176, 0, 248, 300);
+		add(viewpanel);
+		Client.clientGUI.setTitle("Secretary Menu!");
+	}
+	public void setbuttons(int num){
+		switch(num){
+		case 1:
+			btnCreate.setEnabled(false);
+			btnCreate.setEnabled(true);
+			btnAssocciate.setEnabled(true);
+			btnExRes.setEnabled(true);
+			break;
+		case 2:
+			btnCreate.setEnabled(true);
+			btnCreate.setEnabled(false);
+			btnAssocciate.setEnabled(true);
+			btnExRes.setEnabled(true);
+			break;
+		case 3:
+			btnCreate.setEnabled(true);
+			btnCreate.setEnabled(true);
+			btnAssocciate.setEnabled(false);
+			btnExRes.setEnabled(true);
+			break;
+		case 4:
+			btnCreate.setEnabled(true);
+			btnCreate.setEnabled(true);
+			btnAssocciate.setEnabled(true);
+			btnExRes.setEnabled(false);
+			break;
+		}
+	}
+	public void ChangeJPanel(JPanel panel){
+		((SecretaryHomeUI)Client.userMenu).remove(((SecretaryHomeUI)Client.userMenu).viewpanel);
+		Client.selectedMenu=panel;
+		((SecretaryHomeUI)Client.userMenu).viewpanel=Client.selectedMenu;
+		((SecretaryHomeUI)Client.userMenu).add(((SecretaryHomeUI)Client.userMenu).viewpanel);
+		menuResize();
+	}
+	public void menuResize(){
+		int y_offset=48;
+		int x_offset=177;
+		int y0=Client.userMenu.getHeight();
+		int x=Client.selectedMenu.getWidth();
+		int y=Client.selectedMenu.getHeight();
+		int home_x=Client.clientGUI.getX();
+		int home_y=Client.clientGUI.getY();
+		int dif_width=(x_offset+x)-(((HomeUI)Client.clientGUI).getbtnX()+30);
+		System.out.println("home_x="+home_x+",home_y="+home_y+",dif_width="+dif_width);
+		System.out.println("y_offset="+y_offset+",x_offset="+x_offset+",y0="+y0+",x="+x+",y="+y);
+		((SecretaryHomeUI)Client.userMenu).viewpanel.setBounds(Client.selectedMenu.getX(), Client.selectedMenu.getY(), x, y);
+		//System.out.println(y>y0?y:y0);
+		((HomeUI)Client.clientGUI).innerpanel.setBounds(0,y_offset , x_offset+x, y_offset+(y<y0?y:y0));
+		((HomeUI)Client.clientGUI).contentPane.setBounds(0, 0, x_offset+x, y_offset+(y<y0?y:y0));
+		((HomeUI)Client.clientGUI).setBounds(home_x, home_y, x_offset+x, y_offset+(y<y0?y:y0));
+		//Setting Buttons
+		((HomeUI)Client.clientGUI).setNewBounds(dif_width-10);
+		((HomeUI)Client.clientGUI).repaint();
+	}
+}

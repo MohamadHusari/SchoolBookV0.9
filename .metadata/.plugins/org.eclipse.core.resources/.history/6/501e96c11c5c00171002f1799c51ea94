@@ -1,0 +1,56 @@
+package Secretary;
+
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
+import Entities.ClassRoomStudent;
+import Entities.StudentName;
+
+import java.util.ArrayList;
+
+import javax.swing.JComboBox;
+import javax.swing.JButton;
+
+public class AssocciateClassUI extends JPanel {
+	public ArrayList<ClassRoomStudent> classes;
+	public ArrayList<StudentName> StudentsList;
+	private final JTable tblStudent = new JTable();
+	private final JTable tblClass = new JTable();
+	/**
+	 * Create the panel.
+	 */
+	public AssocciateClassUI() {
+		setLayout(null);
+		setBounds(177,48,500,400);
+		//Table Students Names+ Ids
+		tblStudent.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		JScrollPane jspane=new JScrollPane(tblStudent, JScrollPane.VERTICAL_SCROLLBAR_NEVER, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		jspane.setBounds(281, 50, 87, 250);
+		add(jspane);
+		//============
+		//Classes
+		 DefaultTableModel dtm = new DefaultTableModel(0, 0);
+		tblClass.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		Object[][] tableItems=new Object[60][1];
+		char grade='A';
+		int number=1;
+		for(int i=0;i<60;i++){
+			tableItems[i][0]=new String(grade+"/"+number);
+			if(number!=5){
+				number++;
+			}
+			else{
+				number=1;
+				grade++;
+			}
+		}
+		tblClass.setModel(new DefaultTableModel(tableItems,new String[] {""}));
+		dtm.addColumn(new Object[] { "A/1", "B/1", "C/2" });
+		JScrollPane classpane=new JScrollPane(tblClass, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		classpane.setBounds(100, 50, 87, 250);
+		add(classpane);
+		
+	}
+}

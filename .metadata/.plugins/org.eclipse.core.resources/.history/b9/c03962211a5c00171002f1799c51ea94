@@ -1,0 +1,47 @@
+package Secretary;
+
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
+import Entities.ClassRoomStudent;
+import Entities.StudentName;
+
+import java.util.ArrayList;
+
+import javax.swing.JComboBox;
+import javax.swing.JButton;
+
+public class AssocciateClassUI extends JPanel {
+	public ArrayList<ClassRoomStudent> classes;
+	public ArrayList<StudentName> StudentsList;
+	private final JTable tblStudent = new JTable();
+	private final JTable tblClass = new JTable();
+	private final JButton btnNewButton = new JButton("New button");
+
+	/**
+	 * Create the panel.
+	 */
+	public AssocciateClassUI() {
+		setLayout(null);
+		setBounds(177,48,400,400);
+		//Table Students Names+ Ids
+		/*tblStudent.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		JScrollPane jspane=new JScrollPane(tblStudent, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		jspane.setBounds(281, 50, 87, 250);
+		add(jspane);
+		//============
+		//Classes
+		 DefaultTableModel dtm = new DefaultTableModel(0, 0);
+		tblClass.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		tblClass.setModel(dtm);
+		dtm.addColumn(new Object[] { "A/1", "B/1", "C/2" });
+		JScrollPane classpane=new JScrollPane(tblClass, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		classpane.setBounds(100, 50, 87, 250);
+		add(classpane);*/
+		btnNewButton.setBounds(149, 16, 89, 23);
+		
+		add(btnNewButton);
+	}
+}

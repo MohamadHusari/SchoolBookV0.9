@@ -1,0 +1,18 @@
+package Secretary;
+
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+public class HomeSelectUI extends JPanel {
+
+	/**
+	 * Create the panel.
+	 */
+	private final JLabel menuimg = new JLabel(new ImageIcon("img\\Secretary\\ExceptionStudentsUI\\Announcement-icon.png"));
+	public HomeSelectUI() {
+		menuimg.setBounds(10,10,300,300);
+		add(menuimg);
+	}
+
+}

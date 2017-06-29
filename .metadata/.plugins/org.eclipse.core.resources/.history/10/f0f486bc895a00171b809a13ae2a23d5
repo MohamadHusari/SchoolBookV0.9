@@ -1,0 +1,21 @@
+package Secretary;
+
+import javax.swing.JPanel;
+import javax.swing.JMenu;
+import javax.swing.JTable;
+
+public class ExceptionStudentsUI extends JPanel {
+	public final JTable tblRequest = new JTable();
+
+	/**
+	 * Create the panel.
+	 */
+	public ExceptionStudentsUI() {
+		setBounds(177, 0, 415, 400);
+		setLayout(null);
+		tblRequest.setBounds(10, 11, 336, 235);
+		
+		add(tblRequest);
+
+	}
+}

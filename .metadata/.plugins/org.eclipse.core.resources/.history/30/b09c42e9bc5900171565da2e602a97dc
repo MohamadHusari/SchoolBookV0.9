@@ -1,0 +1,285 @@
+package Secretary;
+
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+
+import org.jdatepicker.JDatePicker;
+import org.jdatepicker.impl.DateComponentFormatter;
+import org.jdatepicker.impl.JDatePanelImpl;
+import org.jdatepicker.impl.JDatePickerImpl;
+import org.jdatepicker.impl.UtilDateModel;
+
+import com.sun.prism.Graphics;
+
+import OurMessage.Message;
+import OurMessage.QTypes;
+import User.HomeUI;
+import chat.Client;
+
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComponent;
+import javax.swing.JLabel;
+import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Properties;
+import java.awt.event.ActionEvent;
+import java.awt.BorderLayout;
+import java.awt.Color;
+
+public class CreatingSemesterUI extends JPanel {
+	private JPanel panel;
+	private JButton btncheck ;
+	private JButton btnPrev;
+	private JLabel imgstart = new JLabel(new ImageIcon("img\\Secretary\\CreateSemesterUI\\Picture1.png"));
+	private JLabel lblCheckIfCurrent;
+	private JLabel imgend= new JLabel(new ImageIcon("img\\Secretary\\CreateSemesterUI\\Picture2.png"));
+	private JLabel imgabs= new JLabel(new ImageIcon("img\\Secretary\\CreateSemesterUI\\Abs-icon.png"));
+	private JDatePickerImpl startdatePicker;
+	private JDatePickerImpl enddatePicker;
+	public JLabel lblLetter;
+	public int semID;
+	private JButton btnaddSem;
+	private JLabel lblstar1;
+	private JLabel lblstar2;
+	private JLabel lblmsg;
+	private final JButton btnCancel = new JButton("");
+	/**
+	 * Create the panel.
+	 */
+	public CreatingSemesterUI() {
+		setBackground(Color.WHITE);
+		setLayout(null);
+		setBounds(177, 0, 415, 400);
+		panel = new JPanel();
+		panel.setBackground(Color.WHITE);
+		panel.setBounds(0, 47, 426, 242);
+		add(panel);
+		panel.setLayout(null);
+
+		JLabel iconLabel = new JLabel(new ImageIcon("img\\Secretary\\CreateSemesterUI\\Arrow-reload-3-icon.png"));
+		JLabel clickMe = new JLabel("Check if current semester duration had expired!", SwingConstants.CENTER);
+		btncheck = new JButton("");
+		btncheck.setLayout(new BorderLayout());
+		btncheck.add(iconLabel, BorderLayout.WEST);
+		btncheck.add(clickMe, BorderLayout.CENTER);
+		btncheck.setOpaque(false);
+		btncheck.setContentAreaFilled(false);
+		btncheck.setBorderPainted(false);
+		btncheck.setBounds(50, 9, 354, 45);
+		btncheck.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Client.client.handleMessageFromClientUI(
+						new Message("select * from semster where id=(select max(id) FROM semster);",QTypes.checksemester));
+			}
+		});
+		add(btncheck);
+		
+		
+		//Inner Panel
+		//JDatePicker Setting UP
+		UtilDateModel startmodel = new UtilDateModel();
+		UtilDateModel endmodel = new UtilDateModel();
+		Properties p = new Properties();
+		p.put("text.today", "Today");
+		p.put("text.month", "Month");
+		p.put("text.year", "Year");
+		Properties endp = new Properties();
+		endp.put("text.today", "Today");
+		endp.put("text.month", "Month");
+		endp.put("text.year", "Year");
+		JDatePanelImpl startdatePanel = new JDatePanelImpl(startmodel, p);
+		JDatePanelImpl enddatePanel = new JDatePanelImpl(endmodel, endp);
+		
+		imgstart.setBounds(88, 37, 30, 30);
+		panel.add(imgstart);
+		startdatePicker = new JDatePickerImpl(startdatePanel, new DateComponentFormatter());
+		startdatePicker.setBounds(118, 37, 150, 25);
+		panel.add(startdatePicker);
+		
+		imgend.setBounds(88, 82, 30, 30);
+		panel.add(imgend);
+		enddatePicker = new JDatePickerImpl(enddatePanel, new DateComponentFormatter());
+		enddatePicker.setBounds(118, 82, 150, 25);
+		panel.add(enddatePicker);
+		
+		imgabs.setBounds(88, 123, 30, 30);
+		panel.add(imgabs);
+		
+		lblLetter = new JLabel("");
+		lblLetter.setEnabled(false);
+		lblLetter.setBounds(128, 138, 46, 14);
+		panel.add(lblLetter);
+		
+		JLabel iconLabelAdd = new JLabel(new ImageIcon("img\\Secretary\\CreateSemesterUI\\Button-1-play-icon.png"));
+		JLabel clickMeAdd = new JLabel("Create", SwingConstants.CENTER);
+		btnaddSem = new JButton("");
+		btnaddSem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				boolean first=true,second=true;
+				lblstar1.setVisible(false);
+				lblstar2.setVisible(false);
+
+				if((Date)startdatePicker.getModel().getValue()==null)
+				{				
+					lblstar1.setText("*");
+					lblstar1.setForeground(Color.RED);
+					lblstar1.setVisible(true);
+					first=false;
+				}
+				if((Date)enddatePicker.getModel().getValue()==null)
+				{
+					lblstar2.setText("*");
+					lblstar2.setForeground(Color.RED);
+					lblstar2.setVisible(true);
+					second=false;
+				}
+				if(first && second)
+				{
+					DateFormat dateFormatYMD = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+					Date today=new Date();
+					Date start=(Date)startdatePicker.getModel().getValue();
+					Date end=(Date)enddatePicker.getModel().getValue();
+					if(start.before(end)){
+						
+						if(start.after(today)){
+							
+							Client.client.handleMessageFromClientUI(new Message("insert into semster values ("+semID+",'"+dateFormatYMD.format(start)+"','"+dateFormatYMD.format(end)+"','"+lblLetter.getText()+"');",QTypes.addnewsemester));
+						}else{
+							lblstar1.setText("*");
+							lblstar1.setForeground(Color.RED);
+							lblstar1.setVisible(true);
+							lblmsg.setText("Start Date cannot be before Today's Date!");
+							lblmsg.setVisible(true);
+
+						}
+					}else{
+						lblstar1.setText("*");
+						lblstar1.setForeground(Color.RED);
+						lblstar1.setVisible(true);
+						lblstar2.setText("*");
+						lblstar2.setForeground(Color.RED);
+						lblstar2.setVisible(true);
+						lblmsg.setText("End date cannot due after Start Date!");
+						lblmsg.setVisible(true);
+
+					}
+					
+				}else{
+					lblmsg.setText("Fill Empty Fields!");
+					lblmsg.setVisible(true);
+				}
+				
+			}
+		});
+		btnaddSem.setLayout(new BorderLayout());
+		btnaddSem.add(iconLabelAdd, BorderLayout.WEST);
+		btnaddSem.add(clickMeAdd, BorderLayout.CENTER);
+		btnaddSem.setOpaque(false);
+		btnaddSem.setContentAreaFilled(false);
+		btnaddSem.setBorderPainted(false);
+		btnaddSem.setBounds(65, 197, 120, 45);
+		panel.add(btnaddSem);
+		
+		lblstar1 = new JLabel("");
+		lblstar1.setBounds(278, 41, 46, 14);
+		panel.add(lblstar1);
+		
+		lblstar2 = new JLabel("");
+		lblstar2.setBounds(278, 86, 46, 14);
+		panel.add(lblstar2);
+		
+		lblmsg = new JLabel("");
+		lblmsg.setBounds(116, 172, 300, 14);
+		panel.add(lblmsg);
+		
+		JLabel iconLabelCancel = new JLabel(new ImageIcon("img\\Secretary\\CreateSemesterUI\\Button-2-stop-icon.png"));
+		JLabel clickMeCancel = new JLabel("Create", SwingConstants.CENTER);
+		btnCancel.setLayout(new BorderLayout());
+		btnCancel.add(iconLabelCancel, BorderLayout.WEST);
+		btnCancel.add(clickMeCancel, BorderLayout.CENTER);
+		btnCancel.setOpaque(false);
+		btnCancel.setContentAreaFilled(false);
+		btnCancel.setBorderPainted(false);
+		btnCancel.setBounds(65, 277, 120, 45);
+		panel.add(btnCancel);
+		
+
+		//Date Picking
+		//Date pick=(Date)datePicker.getModel().getValue();
+		
+		//Keep Last
+		this.changeEnbled(false);
+	}
+	public void added(boolean set){
+		lblstar1.setVisible(false);
+		lblstar2.setVisible(false);
+		if(set){
+			lblmsg.setText("Added New semester successfully!");
+			lblmsg.setForeground(Color.GREEN);
+		}else{
+			lblmsg.setText("Failed to add a new semester to DB!");
+			lblmsg.setForeground(Color.RED);
+		}
+		lblmsg.setVisible(true);
+		changeEnbled(!set);
+	}
+	public void changeEnbled(boolean set){
+		startdatePicker.getComponent(1).setEnabled(set);
+		startdatePicker.setEnabled(set);
+		enddatePicker.getComponent(1).setEnabled(set);
+		enddatePicker.setEnabled(set);
+		btnaddSem.setEnabled(set);
+		panel.setEnabled(set);
+	}
+	public void setErrSemester(){
+		/*changeButtonCheck("Button-7-close-icon.png");
+		this.btncheck.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Client.client.handleMessageFromClientUI(
+						new Message("select * from semster where id=(select max(id) FROM semster);",QTypes.checksemester));
+			}
+		});
+		this.btncheck.setEnabled(true);
+		//repaint();*/
+	}
+	public void setSemester(){
+		changeEnbled(true);
+		changeButtonCheck("Check-3-icon.png");
+		semID=1;
+		lblLetter.setText("A");
+	}
+	public void changeButtonCheck(String icon){
+		this.remove(this.btncheck);
+		//this.btncheck.remove(clickMe);
+		JLabel iconLabel = new JLabel(new ImageIcon("img\\Secretary\\CreateSemesterUI\\"+icon));
+		JLabel clickMe = new JLabel("Check if current semester duration had expired!", SwingConstants.CENTER);
+		this.btncheck = new JButton("");
+		this.btncheck.setLayout(new BorderLayout());
+		this.btncheck.add(iconLabel, BorderLayout.WEST);
+		this.btncheck.add(clickMe, BorderLayout.CENTER);
+		this.btncheck.setOpaque(false);
+		this.btncheck.setContentAreaFilled(false);
+		this.btncheck.setBorderPainted(false);
+		this.btncheck.setBounds(50, 12, 354, 35);
+		this.btncheck.setEnabled(false);
+		//this.btncheck.add(clickMe);
+		this.add(this.btncheck);
+		repaint();
+	}
+	public void setSemester(int id,String cha){
+		changeEnbled(true);
+		changeButtonCheck("Check-3-icon.png");
+		//==============
+		semID=id+1;
+		switch(cha){
+		case "A":lblLetter.setText("B");	break;
+		case "B":lblLetter.setText("C");	break;
+		case "C":lblLetter.setText("A");	break;
+		}		
+	}
+}

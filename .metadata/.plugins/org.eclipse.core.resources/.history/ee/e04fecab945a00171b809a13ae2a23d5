@@ -1,0 +1,14 @@
+package Secretary;
+
+import javax.swing.JPanel;
+
+public class HomeSelectUI extends JPanel {
+
+	/**
+	 * Create the panel.
+	 */
+	public HomeSelectUI() {
+
+	}
+
+}

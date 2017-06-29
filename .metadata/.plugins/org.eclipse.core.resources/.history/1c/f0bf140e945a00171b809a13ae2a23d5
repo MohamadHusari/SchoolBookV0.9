@@ -1,0 +1,99 @@
+package Secretary;
+
+import javax.swing.JPanel;
+import javax.swing.JMenu;
+import javax.swing.JTable;
+import javax.swing.SwingConstants;
+import javax.swing.table.AbstractTableModel;
+import javax.swing.table.DefaultTableModel;
+
+import java.awt.BorderLayout;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.ListSelectionModel;
+
+public class ExceptionStudentsUI extends JPanel {
+	public final JTable tblRequest;
+	private final JButton btnupdate = new JButton("");
+	private final JButton btnCancel = new JButton("");
+	private final JLabel lblrequest = new JLabel("Request");
+	private final JLabel lblstudent = new JLabel("Student");
+	private final JLabel lblcourse = new JLabel("Course");
+	private final JLabel lblclass = new JLabel("Class");
+	private final JLabel lblApprove = new JLabel("Approve");
+	private final JLabel imgreq = new JLabel(new ImageIcon("img\\Secretary\\ExceptionStudentsUI\\Files-icon.png"));
+	private final JLabel imgstu = new JLabel(new ImageIcon("img\\Secretary\\ExceptionStudentsUI\\Addressbook-3-icon.png"));
+	private final JLabel imgcou = new JLabel(new ImageIcon("img\\Secretary\\ExceptionStudentsUI\\Addressbook-3-icon.png"));	
+	private final JLabel imgcla = new JLabel(new ImageIcon("img\\Secretary\\ExceptionStudentsUI\\Addressbook-3-icon.png"));	
+	private final JLabel imgapp = new JLabel(new ImageIcon("img\\Secretary\\ExceptionStudentsUI\\Addressbook-3-icon.png"));	
+	/**
+	 * Create the panel.
+	 */
+	public ExceptionStudentsUI() {
+		setBounds(177, 0, 415, 400);
+		setLayout(null);
+		//Setting Table to not editable
+		tblRequest = new JTable(){  
+		       public boolean isCellEditable(int row,int column){  
+		           Object o = getValueAt(row,column);  
+		           if(o!=null) return false;  
+		           return true;  
+		         }  
+		       }; 
+		tblRequest.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		tblRequest.setBounds(10, 27, 381, 157);
+		add(tblRequest);
+		//Button Update System & send message to Student
+		JLabel iconLabelupdate = new JLabel(new ImageIcon("img\\Secretary\\ExceptionStudentsUI\\Arrow-download-2-icon.png"));
+		JLabel clickMeupdate = new JLabel("Update DB", SwingConstants.CENTER);
+		btnupdate.setLayout(new BorderLayout());
+		btnupdate.add(iconLabelupdate, BorderLayout.WEST);
+		btnupdate.add(clickMeupdate, BorderLayout.CENTER);
+		btnupdate.setOpaque(false);
+		btnupdate.setContentAreaFilled(false);
+		btnupdate.setBorderPainted(false);
+		btnupdate.setBounds(10, 270, 157, 45);
+		add(btnupdate);
+		//Cancel Button
+
+		JLabel iconLabelCancel = new JLabel(new ImageIcon("img\\Secretary\\CreateSemesterUI\\Button-2-stop-icon.png"));
+		JLabel clickMeCancel = new JLabel("Cancel", SwingConstants.CENTER);
+		btnCancel.setLayout(new BorderLayout());
+		btnCancel.add(iconLabelCancel, BorderLayout.WEST);
+		btnCancel.add(clickMeCancel, BorderLayout.CENTER);
+		btnCancel.setOpaque(false);
+		btnCancel.setContentAreaFilled(false);
+		btnCancel.setBorderPainted(false);
+		btnCancel.setBounds(207, 270, 157, 45);
+		add(btnCancel);
+		//Request Label
+		imgreq.setBounds(10, 5, 20, 20);
+		add(imgreq);
+		lblrequest.setBounds(31, 9, 50, 14);
+		add(lblrequest);
+		//Student Label
+		imgstu.setBounds(88, 5, 20, 20);
+		add(imgstu);
+		lblstudent.setBounds(110,9, 60, 14);
+		add(lblstudent);
+		//Course Label
+		imgcou.setBounds(164, 5, 20, 20);
+		add(imgcou);
+		lblcourse.setBounds(186, 9, 50, 14);
+		add(lblcourse);
+		//class Label
+		imgcla.setBounds(240, 5, 20, 20);
+		add(imgcla);
+		lblclass.setBounds(262, 9, 45, 14);
+		add(lblclass);
+		//Approve Label
+		imgapp.setBounds(318, 5, 20, 20);
+		add(imgapp);
+		lblApprove.setBounds(340, 9, 70, 14);
+		add(lblApprove);
+		
+		
+	}
+}

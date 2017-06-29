@@ -1,0 +1,14 @@
+package Secretary;
+
+import javax.swing.JPanel;
+
+public class AssocciatingClassUI extends JPanel {
+
+	/**
+	 * Create the panel.
+	 */
+	public AssocciatingClassUI() {
+
+	}
+
+}

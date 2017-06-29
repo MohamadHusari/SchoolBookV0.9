@@ -1,0 +1,19 @@
+package Secretary;
+
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+public class HomeSelectUI extends JPanel {
+
+	/**
+	 * Create the panel.
+	 */
+	private final JLabel menuimg = new JLabel(new ImageIcon("img\\Secretary\\HomeMenuUI\\Folder-icon.png"));
+	public HomeSelectUI() {
+		setLayout(null);
+		menuimg.setBounds(114,23,250,250);
+		add(menuimg);
+	}
+
+}

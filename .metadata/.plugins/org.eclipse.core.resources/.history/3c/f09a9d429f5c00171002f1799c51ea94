@@ -1,0 +1,102 @@
+package Secretary;
+
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
+import javax.swing.border.MatteBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableModel;
+
+import Entities.ClassRoomStudent;
+import Entities.StudentName;
+
+import java.awt.Color;
+import java.util.ArrayList;
+
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+
+public class AssocciateClassUI extends JPanel {
+	public ArrayList<ClassRoomStudent> classes;
+	public ArrayList<StudentName> StudentsList;
+	private final JTable tblStudent;
+	private final JTable tblClass;
+	private final JLabel imgreq = new JLabel(new ImageIcon("img\\Secretary\\AssocciatingClassUI\\curlyBrace.png"));
+	private final JLabel imgcur = new JLabel(new ImageIcon("img\\Secretary\\AssocciatingClassUI\\curlyBrace.png"));
+
+	/**
+	 * Create the panel.
+	 */
+	public AssocciateClassUI() {
+		setLayout(null);
+		setBounds(177,0,500,355);
+		//Table Students Names+ Ids
+		tblClass = new JTable(){public boolean isCellEditable(int row,int column){Object o = getValueAt(row,column);if(o!=null) return false;return true;}}; 
+		tblStudent= new JTable(){public boolean isCellEditable(int row,int column){Object o = getValueAt(row,column);if(o!=null) return false;return true;}};
+		tblStudent.setBorder(new MatteBorder(1, 1, 1, 1, Color.BLACK));
+		tblStudent.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+		tblStudent.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		JScrollPane jspane=new JScrollPane(tblStudent, JScrollPane.VERTICAL_SCROLLBAR_NEVER, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		jspane.setBounds(314, 29, 155, 250);
+		add(jspane);
+		//============
+		//Classes
+		tblClass.setBorder(new MatteBorder(1, 1, 1, 1, Color.BLACK));
+		tblClass.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		tblClass.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		Object[][] tableItems=new Object[60][1];
+		char grade='A';
+		int number=1;
+		for(int i=0;i<60;i++){
+			tableItems[i][0]=new String(grade+"/"+number);
+			if(number!=5){
+				number++;
+			}
+			else{
+				number=1;
+				grade++;
+			}
+		}
+		tblClass.setModel(new DefaultTableModel(tableItems,new String[] {""}));
+		tblClass.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+		   
+			@Override
+			public void valueChanged(ListSelectionEvent e) {
+				// TODO Auto-generated method stub
+				//getStudentsforClass(tblClass.getValueAt(tblClass.getSelectedRow(), 0).toString());
+			}
+		});
+		JScrollPane classpane=new JScrollPane(tblClass, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		classpane.setBounds(99, 29, 87, 250);
+		add(classpane);
+		imgreq.setBounds(49,70,50,167);
+		add(imgreq);
+		imgcur.setBounds(264,70,50,167);
+		add(imgcur);
+
+		
+	}
+	public void getStudentsforClass(){
+		//ArrayList<Integer> classStudent=new ArrayList<Integer>();
+		ArrayList<StudentName> classNStudent=new ArrayList<StudentName>();
+		boolean flag;
+		for(StudentName st:StudentsList){
+			flag=true;
+			for(ClassRoomStudent crs:classes){
+				if(st.getId()==crs.getStudentID()){flag=false;break;}
+			}
+			if(flag)
+				classNStudent.add(st);
+		}
+		DefaultTableModel tableModel = new DefaultTableModel(new String[] {"",""}, 0);
+		tblStudent.setModel(tableModel);
+		for(StudentName st:classNStudent){
+			Object[] data={st.getId(),st.getName()};
+			tableModel.addRow(data);
+		}
+	}
+}
