@@ -89,7 +89,6 @@ public class LoginUI extends JFrame {
 		setstatus("Your Account has Been successfully login\nRedirect in 1 sec...");
 		DateFormat dateformat = new SimpleDateFormat ("yyyy-MM-dd HH:mm:ss.ms");
 		Client.client.handleMessageFromClientUI(new Message ("SELECT id FROM sms.semster WHERE \"" +dateformat.format(mydate) + "\" between start_date and end_date", QTypes.GetOpenedSem ));
-		
 		ActionListener task = new ActionListener() {
 	        public void actionPerformed(ActionEvent e) {
 	        	Client.clientGUI.dispose();
@@ -107,6 +106,7 @@ public class LoginUI extends JFrame {
 				case 3://System.out.println("Welcome Back System Admin");
 					((HomeUI)Client.clientGUI).innerpanel=new sysAdminHomeUI();
 					((HomeUI)Client.clientGUI).contentPane.add(((HomeUI)Client.clientGUI).innerpanel);
+					System.out.print(Client.client.opnedsem);
 					break;
 				case 4://System.out.println("Welcome Back School Admin");
 					
