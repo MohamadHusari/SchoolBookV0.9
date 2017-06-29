@@ -15,7 +15,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.table.TableModel;
 
 import com.mysql.jdbc.ResultSet;
-
+import Teacher.*;
 import ocsf.client.AbstractClient;
 import Entities.ClassRoomStudent;
 import Entities.Course;
@@ -376,7 +376,88 @@ public class Client extends AbstractClient {
 			break;
 			
 			/* Sys Admin */
+			/// teacher
 			
+					case 700:
+						if(((Request)msg).getRequest() instanceof Boolean)
+						{
+							if(!(Boolean)(((Request)msg).getRequest())){
+								//DB is Empty
+								System.out.print("empty");
+							}
+						}
+						if(((Request)msg).getRequest() instanceof ArrayList<?>)
+						{
+							if(((ArrayList<?>)((Request)msg).getRequest()).get(0) instanceof Integer)
+							{
+								ArrayList<Integer> m = ((ArrayList<Integer>)((Request)msg).getRequest());
+								((TeacherEnteringHours)((TeacherHomeUI)((HomeUI)clientGUI).innerpanel).innerpanel).lblchours.setText(""+m.get(1));
+								((TeacherEnteringHours)((TeacherHomeUI)((HomeUI)clientGUI).innerpanel).innerpanel).maxhours = m.get(0);
+							}
+						}
+						break;
+						
+					case 701:
+						if(((Request)msg).getRequest() instanceof Boolean)
+						{
+							if(!(Boolean)(((Request)msg).getRequest())){
+								//DB is Empty
+								System.out.print("empty");
+							}
+							else
+							{
+								((TeacherEnteringHours)((TeacherHomeUI)((HomeUI)clientGUI).innerpanel).innerpanel).successadd("The hours has been added successfully");
+								float res = Float.parseFloat(((TeacherEnteringHours)((TeacherHomeUI)((HomeUI)clientGUI).innerpanel).innerpanel).textHours.getText());
+								res += Integer.parseInt(((TeacherEnteringHours)((TeacherHomeUI)((HomeUI)clientGUI).innerpanel).innerpanel).lblchours.getText());
+								((TeacherEnteringHours)((TeacherHomeUI)((HomeUI)clientGUI).innerpanel).innerpanel).lblchours.setText(""+res);
+								((TeacherEnteringHours)((TeacherHomeUI)((HomeUI)clientGUI).innerpanel).innerpanel).textHours.setText("");
+							}
+						}
+						
+						break;
+						
+					case 702:
+						if(((Request)msg).getRequest() instanceof Boolean)
+						{
+							if(!(Boolean)(((Request)msg).getRequest())){
+								//DB is Empty
+								System.out.print("empty");
+							}
+						}
+						if(((Request)msg).getRequest() instanceof ArrayList<?>)
+						{
+							if(((ArrayList<?>)((Request)msg).getRequest()).get(0) instanceof TeachUnit)
+							{
+								ArrayList<TeachUnit> m = ((ArrayList<TeachUnit>)((Request)msg).getRequest());
+								for (int i = 0; i < m.size(); i++) {
+									((TU_newRequest)((TeacherHomeUI)((HomeUI)clientGUI).innerpanel).innerpanel).teacunit_choice.add(m.get(i).getTeachUnit_Name() + " '" + m.get(i).getTeachUnit_ID() +"'");
+								}
+							}
+						}
+						break;
+						
+					case 703:
+						if(((Request)msg).getRequest() instanceof Boolean)
+						{
+							if(!(Boolean)(((Request)msg).getRequest()))
+								System.out.print("asd");
+						}
+						if(((Request)msg).getRequest() instanceof ArrayList<?>)
+						{
+							if(((ArrayList<?>)((Request)msg).getRequest()).get(0) instanceof Course)
+							{
+								((TeacherShowCFields)((TeacherHomeUI)((HomeUI)clientGUI).innerpanel).innerpanel).allcourses = ((ArrayList<Course>)((Request)msg).getRequest()) ;
+								//((ShowAllCoursesFieldsUI)((sysAdminHomeUI)((HomeUI)clientGUI).innerpanel).innerpanel).index = 0;
+								((TeacherShowCFields)((TeacherHomeUI)((HomeUI)clientGUI).innerpanel).innerpanel).StartmyUI(((TeacherShowCFields)((TeacherHomeUI)((HomeUI)clientGUI).innerpanel).innerpanel).allcourses);
+							}
+						}
+						
+						break;
+						
+						//teacher
+						
+						
+						
 			
 		}
 	}

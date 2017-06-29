@@ -13,7 +13,7 @@ import OurMessage.Message;
 import OurMessage.QTypes;
 import chat.Client;
 import sysAdmin.sysAdminHomeUI;
-
+import Teacher.*;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -88,14 +88,14 @@ public class HomeUI extends JFrame {
             		//Client.client.handleMessageFromClientUI(new Message("SELECT course_id, course_name FROM courses",QTypes.GetAllCoursesids));
             		((sysAdminHomeUI)((HomeUI)Client.client.clientGUI).innerpanel).resizesysAdminHome();
 				}
-				/*else if(((HomeUI)Client.clientGUI).innerpanel.getClass().getSimpleName().equals("TeacherHomeUI"))
+				else if(((HomeUI)Client.clientGUI).innerpanel.getClass().getSimpleName().equals("TeacherHomeUI"))
 				{
 					((TeacherHomeUI)((HomeUI)Client.client.clientGUI).innerpanel).contentPane.remove(((TeacherHomeUI)((HomeUI)Client.client.clientGUI).innerpanel).innerpanel);
             		((TeacherHomeUI)((HomeUI)Client.client.clientGUI).innerpanel).innerpanel = new ChangePassUI();
             		((TeacherHomeUI)((HomeUI)Client.client.clientGUI).innerpanel).contentPane.add(((TeacherHomeUI)((HomeUI)Client.client.clientGUI).innerpanel).innerpanel);
             		//Client.client.handleMessageFromClientUI(new Message("SELECT course_id, course_name FROM courses",QTypes.GetAllCoursesids));
             		((TeacherHomeUI)((HomeUI)Client.client.clientGUI).innerpanel).resizeteacherhome();
-				}*/
+				}
 				else
 				{
 					((HomeUI)Client.clientGUI).contentPane.remove(((HomeUI)Client.clientGUI).innerpanel);
