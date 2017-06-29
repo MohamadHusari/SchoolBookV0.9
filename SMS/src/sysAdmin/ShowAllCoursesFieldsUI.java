@@ -343,7 +343,7 @@ public class ShowAllCoursesFieldsUI extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				((sysAdminHomeUI)((HomeUI)Client.client.clientGUI).innerpanel).contentPane.remove(((sysAdminHomeUI)((HomeUI)Client.client.clientGUI).innerpanel).innerpanel);
 				((ShowAllCoursesFieldsUI)((sysAdminHomeUI)((HomeUI)Client.client.clientGUI).innerpanel).innerpanel).removeAll();
-				((sysAdminHomeUI)((HomeUI)Client.client.clientGUI).innerpanel).innerpanel = new EditCourseUI();
+				((sysAdminHomeUI)((HomeUI)Client.client.clientGUI).innerpanel).innerpanel = new EditCourseNextUI();
 				((sysAdminHomeUI)((HomeUI)Client.client.clientGUI).innerpanel).contentPane.add(((sysAdminHomeUI)((HomeUI)Client.client.clientGUI).innerpanel).innerpanel);
 				//((EditCourseUI)((sysAdminHomeUI)((HomeUI)Client.client.clientGUI).innerpanel).innerpanel).StartmyUI(allcourses);
 				//Client.client.handleMessageFromClientUI(new Message("SELECT course_id, course_name FROM courses",QTypes.GetAllCoursesids));

@@ -6,6 +6,7 @@
 	<classpathentry kind="lib" path="miglayout15-swing.jar" sourcepath="miglayout-src.zip"/>
 	<classpathentry kind="lib" path="Connector/jdatepicker-1.3.4.jar"/>
 	<classpathentry kind="lib" path="Connector/rs2xml.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Fareed/Desktop/NewNew/SSS/SMS/Connector/jide-common.jar"/>
+	<classpathentry kind="lib" path="Connector/jide-common.jar"/>
+	<classpathentry kind="lib" path="D:/SMS/SMS/Connector/joda-time-2.9.9.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

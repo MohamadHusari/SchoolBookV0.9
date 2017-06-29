@@ -25,6 +25,9 @@ import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
 import java.awt.Font;
@@ -44,6 +47,7 @@ public class LoginUI extends JFrame {
 	public JLabel lblNewLabel;
 	final public static int DEFAULT_PORT = 5555;
 	static LoginUI login;
+	static Date mydate;
 	/**
 	 * Launch the application.
 	 */
@@ -83,6 +87,9 @@ public class LoginUI extends JFrame {
 	public void loginsuccess(int access){
 		lblerr.setForeground(Color.green);
 		setstatus("Your Account has Been successfully login\nRedirect in 1 sec...");
+		DateFormat dateformat = new SimpleDateFormat ("yyyy-MM-dd HH:mm:ss.ms");
+		Client.client.handleMessageFromClientUI(new Message ("SELECT id FROM sms.semster WHERE \"" +dateformat.format(mydate) + "\" between start_date and end_date", QTypes.GetOpenedSem ));
+		
 		ActionListener task = new ActionListener() {
 	        public void actionPerformed(ActionEvent e) {
 	        	Client.clientGUI.dispose();
@@ -229,6 +236,7 @@ public class LoginUI extends JFrame {
 					{
 						Message msg = new Message("SELECT * FROM users WHERE id="+ getUsername()+" AND password="+getPassword()+";",QTypes.getuser);
 						Client.client.handleMessageFromClientUI(msg);
+						mydate = new Date();
 					}
 				}
 			}

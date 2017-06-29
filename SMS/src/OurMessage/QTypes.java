@@ -10,6 +10,7 @@ public class QTypes {
 	public static int update = 4;//Logout Button
 	public static int getuser=5;//Login Button
 	public static int updateonX=6;//HomeUI Clicking on X then Yes
+	public static int GetOpenedSem=7;
 	public static int secretaryStudents = 100;
 	public static int checksemester=101;//check semester duration
 	public static int addnewsemester=102;//adding new semester

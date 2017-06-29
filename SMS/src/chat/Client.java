@@ -44,6 +44,7 @@ public class Client extends AbstractClient {
 	public static JFrame clientGUI;
 	public static Client client;
     public static User user;
+    public static String opnedsem = "";
     //Get more entities
     public static JPanel userMenu;
     public static JPanel selectedMenu;
@@ -134,6 +135,19 @@ public class Client extends AbstractClient {
 				
 				
 			}
+			
+		case 7://Login Case
+			if(((Request)msg).getRequest() instanceof Boolean)
+			{
+				if(!(Boolean)(((Request)msg).getRequest()))
+					System.out.print("There is no Opned semester");
+
+			}
+			if(((Request)msg).getRequest() instanceof Integer)
+			{ 
+				this.opnedsem = ((Integer)((Request)msg).getRequest()).toString();	
+			}
+			
 			break;
 		case 101:
 			((SecretaryHomeUI)Client.userMenu).ChangeJPanel(new CreatingSemesterUI());

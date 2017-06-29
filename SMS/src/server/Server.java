@@ -1,5 +1,6 @@
 package server;
 
+import java.awt.Color;
 import java.io.IOException;
 import java.sql.*;
 import java.time.LocalDateTime;
@@ -12,6 +13,7 @@ import javax.swing.table.TableModel;
 import ocsf.server.*;
 
 import OurMessage.*;
+import User.LoginUI;
 import net.proteanit.sql.DbUtils;
 import Entities.AccessProfiles;
 import Entities.ClassRoomStudent;
@@ -139,6 +141,31 @@ public class Server extends AbstractServer {
 			  case 6:
 				  stmt.executeUpdate(((Message)msg).GetQuery());
 				  serv.display("["+dtf.format(now)+"] User: "+client.getInfo("name")+" has been disconnected!" );
+				  break;
+				  
+			  case 7://Login Case
+				  rs = stmt.executeQuery(((Message) msg).GetQuery());
+				  if (rs.next()) {
+					      int res=rs.getInt(1);//get sem id
+						  Request req7=new Request(res,QTypes.GetOpenedSem);
+						  try{
+							  client.sendToClient(req7);
+						  }catch(IOException ex){
+							 //Do Somthing
+							  serv.display("["+dtf.format(now)+"] Error Sending back false statment!");
+						  }
+				  }
+				  else
+				  {
+					  Request req7=new Request(false,QTypes.GetOpenedSem);
+					  try{
+						  client.sendToClient(req7);
+					  }catch(IOException ex){
+						 //Do Somthing
+						  serv.display("["+dtf.format(now)+"] Error Sending back false statment!");
+					  }
+				  }
+				  
 				  break;
 				  
 				  // Student Blocking Parent .

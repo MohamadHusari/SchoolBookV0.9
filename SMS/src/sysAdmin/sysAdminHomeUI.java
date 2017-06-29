@@ -127,7 +127,7 @@ public class sysAdminHomeUI extends JPanel {
 		    		    				//contentPane.repaint();
 		    		    				//lblNewLabel.setText(tp.getLastPathComponent().toString());
 		    		    			}
-		    		    			if(s.equals("Add Teching Unit"))
+		    		    			if(s.equals("Add Teach Unit"))
 		    		    			{
 		    		    				savemenu = new String(s);
 		    		    				pressed = true;
