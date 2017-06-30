@@ -104,12 +104,12 @@ public class LoginUI extends JFrame {
 				case 2://System.out.println("Welcome Back Teacher");
 					((HomeUI)Client.clientGUI).innerpanel=new TeacherHomeUI();
 					((HomeUI)Client.clientGUI).contentPane.add(((HomeUI)Client.clientGUI).innerpanel);
-					System.out.print(Client.client.opnedsem);
+					//System.out.print(Client.client.opnedsem);
 					break;
 				case 3://System.out.println("Welcome Back System Admin");
 					((HomeUI)Client.clientGUI).innerpanel=new sysAdminHomeUI();
 					((HomeUI)Client.clientGUI).contentPane.add(((HomeUI)Client.clientGUI).innerpanel);
-					System.out.print(Client.client.opnedsem);
+					//System.out.print(Client.client.opnedsem);
 					break;
 				case 4://System.out.println("Welcome Back School Admin");
 					
