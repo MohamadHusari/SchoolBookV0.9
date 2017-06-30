@@ -447,7 +447,7 @@ public class Client extends AbstractClient {
 							if(((ArrayList<?>)((Request)msg).getRequest()).get(0) instanceof Course)
 							{
 								((TeacherShowCFields)((TeacherHomeUI)((HomeUI)clientGUI).innerpanel).innerpanel).allcourses = ((ArrayList<Course>)((Request)msg).getRequest()) ;
-								//((ShowAllCoursesFieldsUI)((sysAdminHomeUI)((HomeUI)clientGUI).innerpanel).innerpanel).index = 0;
+								//((TeacherShowCFields)((TeacherHomeUI)((HomeUI)clientGUI).innerpanel).innerpanel).index = 0;
 								((TeacherShowCFields)((TeacherHomeUI)((HomeUI)clientGUI).innerpanel).innerpanel).StartmyUI(((TeacherShowCFields)((TeacherHomeUI)((HomeUI)clientGUI).innerpanel).innerpanel).allcourses);
 							}
 						}

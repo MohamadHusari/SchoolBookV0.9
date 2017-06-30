@@ -579,28 +579,40 @@ public class Server extends AbstractServer {
 				  
 			  case 703:
 				  rs = stmt.executeQuery(((Message) msg).GetQuery());
-				  ArrayList<Course> allcourses2=new ArrayList<Course>();
-				  ArrayList<String> prec2=new ArrayList<String>();
-				  Course course2;
-				  String precc2 [] =null;
-				  if(rs.next()) { // Checks for any results and moves cursor to first row,
-					    do { // Use 'do...while' to process the first row, while continuing to process remaining rows
-					    	course1 = new Course (rs.getString(1), rs.getString(2), rs.getString(3), rs.getFloat(4), null);
-					    	allcourses2.add(course1);
-					    } while (rs.next());
-				  for(int i=0 ; i<allcourses2.size() ; i++)
+				  ArrayList<String> cou=new ArrayList<String>();
+				  ArrayList<Course> allcourses11=new ArrayList<Course>();
+				  ArrayList<String> prec11=new ArrayList<String>();
+				  Course course11;
+				  String precc11 [] =null;
+				  if(rs.next())
 				  {
-					  prec2.clear();
-					  rs = stmt.executeQuery("SELECT * FROM pre_courses WHERE course_id=" + allcourses2.get(i).getCourse_ID());
-					  if(rs.next()) {
-			    		  do {
-			    		  	  prec2.add(rs.getString(2));
-			    		  }while (rs.next());
-			    		  precc1 = prec2.toArray(new String[prec2.size()]);
-			    		  allcourses2.get(i).setPreCourses(precc1);
-			    	   }
-				  }
-					    Request req703=new Request(allcourses2,QTypes.showCoursesT);
+					  do { // Use 'do...while' to process the first row, while continuing to process remaining rows
+					    	cou.add(rs.getString(2));
+					    } while (rs.next());
+					  for (int i =0;i<cou.size();i++)
+					  {
+						  rs = stmt.executeQuery("SELECT * FROM courses WHERE course_id="+cou.get(i));
+						  if(rs.next()) { // Checks for any results and moves cursor to first row,
+							  do { // Use 'do...while' to process the first row, while continuing to process remaining rows
+								  course11 = new Course (rs.getString(1), rs.getString(2), rs.getString(3), rs.getFloat(4), null);
+								  allcourses11.add(course11);
+							  } while (rs.next());
+						  }
+				  
+						  for(int i1=0 ; i1<allcourses11.size() ; i1++)
+						  {
+							  prec11.clear();
+							  rs = stmt.executeQuery("SELECT * FROM pre_courses WHERE course_id=" + allcourses11.get(i1).getCourse_ID());
+							  if(rs.next()) {
+								  do {
+									  prec11.add(rs.getString(2));
+								  }while (rs.next());
+								  precc11 = prec11.toArray(new String[prec11.size()]);
+								  allcourses11.get(i1).setPreCourses(precc11);
+							  }
+						  }
+					  }
+					  Request req703=new Request(allcourses11,QTypes.showCoursesT);
 					    try{
 							  client.sendToClient(req703);
 						  }catch(IOException ex){

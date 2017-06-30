@@ -179,7 +179,7 @@ public class TeacherHomeUI extends JPanel {
 		    		    				innerpanel.removeAll();
 		    		    				innerpanel = new TeacherShowCFields();
 		    		    				contentPane.add(innerpanel);
-		    		    				Client.client.handleMessageFromClientUI(new Message("SELECT * FROM courses where teacher_id=30",QTypes.showCoursesT));
+		    		    				Client.client.handleMessageFromClientUI(new Message("SELECT * FROM class_schedule WHERE teacher_id="+Client.client.user.getID()+" AND sem_id="+ Client.client.opnedsem,QTypes.showCoursesT));
 		    		    				//Client.client.handleMessageFromClientUI(new Message("SELECT course_id, course_name FROM courses",QTypes.GetAllCoursesids));
 		    		    				resizeteacherhome();
 		    		    				//contentPane.revalidate();

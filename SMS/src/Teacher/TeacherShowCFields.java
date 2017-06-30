@@ -44,7 +44,6 @@ public class TeacherShowCFields extends JPanel {
 	public JList<String> list;
 	public ArrayList<Course> allcourses =new ArrayList<Course>();
 	public int index = 0;
-	private JButton btnedit;
 
 	/**
 	 * Create the panel.
@@ -337,28 +336,6 @@ public class TeacherShowCFields extends JPanel {
 		StyledLabel styledLabel = new StyledLabel();
 		styledLabel.setBounds(435, 244, 1, 1);
 		add(styledLabel);
-		
-		btnedit = new JButton("");
-		btnedit.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				((TeacherHomeUI)((HomeUI)Client.client.clientGUI).innerpanel).contentPane.remove(((TeacherHomeUI)((HomeUI)Client.client.clientGUI).innerpanel).innerpanel);
-				((TeacherShowCFields)((TeacherHomeUI)((HomeUI)Client.client.clientGUI).innerpanel).innerpanel).removeAll();
-				//((TeacherHomeUI)((HomeUI)Client.client.clientGUI).innerpanel).innerpanel = new EditCourseUI();
-				((TeacherHomeUI)((HomeUI)Client.client.clientGUI).innerpanel).contentPane.add(((TeacherHomeUI)((HomeUI)Client.client.clientGUI).innerpanel).innerpanel);
-				//((EditCourseUI)((TeacherHomeUI)((HomeUI)Client.client.clientGUI).innerpanel).innerpanel).StartmyUI(allcourses);
-				//Client.client.handleMessageFromClientUI(new Message("SELECT course_id, course_name FROM courses",QTypes.GetAllCoursesids));
-				((TeacherHomeUI)((HomeUI)Client.client.clientGUI).innerpanel).resizeteacherhome();
-				
-			}
-		});
-		btnedit.setVisible(false);
-		btnedit.setIcon(new ImageIcon("img\\sysAdmin\\edit.png"));
-		btnedit.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
-		btnedit.setFocusable(false);
-		btnedit.setBorder(BorderFactory.createEmptyBorder());
-		btnedit.setBackground(Color.WHITE);
-		btnedit.setBounds(427, 214, 87, 34);
-		add(btnedit);
 
 	}
 	
@@ -367,7 +344,6 @@ public class TeacherShowCFields extends JPanel {
 		if(index == 0)
 		{
 			btnback1.setEnabled(false);
-			btnedit.setVisible(true);
 			btnback2.setEnabled(false);
 			txtcourseid.setText(allcourses.get(index).getCourse_ID());
 			txtcoursename.setText(allcourses.get(index).getCourse_Name());
@@ -384,12 +360,11 @@ public class TeacherShowCFields extends JPanel {
 					model.addElement(mm);
 				}
 			}
-			list.updateUI();
+			//list.updateUI();
 		}
 		else if (index == (allcourses.size()-1))
 		{
 			btnnext1.setEnabled(false);
-			btnedit.setVisible(true);
 			btnnext2.setEnabled(false);
 			txtcourseid.setText(allcourses.get(index).getCourse_ID());
 			txtcoursename.setText(allcourses.get(index).getCourse_Name());
@@ -406,16 +381,14 @@ public class TeacherShowCFields extends JPanel {
 					model.addElement(mm);
 				}
 			}
-			list.updateUI();
+			//list.updateUI();
 		}
 		else if(allcourses.isEmpty())
 		{
-			btnedit.setVisible(false);
 			lblstatus.setVisible(true);
 		}
 		else
 		{
-			btnedit.setVisible(true);
 			txtcourseid.setText(allcourses.get(index).getCourse_ID());
 			txtcoursename.setText(allcourses.get(index).getCourse_Name());
 			txtteachunit.setText(allcourses.get(index).getTeachUnit_ID());
@@ -431,7 +404,7 @@ public class TeacherShowCFields extends JPanel {
 					model.addElement(mm);
 				}
 			}
-			list.updateUI();
+			//list.updateUI();
 		}
 	}
 }

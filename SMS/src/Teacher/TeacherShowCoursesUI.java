@@ -64,7 +64,7 @@ public class TeacherShowCoursesUI extends JPanel {
 				((TeacherHomeUI)((HomeUI)Client.client.clientGUI).innerpanel).innerpanel = new TeacherShowCoursesUI();
 				((TeacherHomeUI)((HomeUI)Client.client.clientGUI).innerpanel).contentPane.add(((TeacherHomeUI)((HomeUI)Client.client.clientGUI).innerpanel).innerpanel);
 				((TeacherShowCFields)((TeacherHomeUI)((HomeUI)Client.client.clientGUI).innerpanel).innerpanel).index = 0;
-				Client.client.handleMessageFromClientUI(new Message("SELECT * FROM courses where teacher_id=30",QTypes.showCoursesT));
+				Client.client.handleMessageFromClientUI(new Message("SELECT * FROM class_schedule WHERE teacher_id="+Client.client.user.getID()+" AND sem_id="+ Client.client.opnedsem,QTypes.showCoursesT));
 				//Client.client.handleMessageFromClientUI(new Message("SELECT course_id, course_name FROM courses",QTypes.GetAllCoursesids));
 				((TeacherHomeUI)((HomeUI)Client.client.clientGUI).innerpanel).resizeteacherhome();
 			}
@@ -194,8 +194,8 @@ public class TeacherShowCoursesUI extends JPanel {
             		((TeacherShowCoursesUI)((TeacherHomeUI)((HomeUI)Client.client.clientGUI).innerpanel).innerpanel).removeAll();
             		((TeacherHomeUI)((HomeUI)Client.client.clientGUI).innerpanel).innerpanel = new TeacherShowCFields();
             		((TeacherHomeUI)((HomeUI)Client.client.clientGUI).innerpanel).contentPane.add(((TeacherHomeUI)((HomeUI)Client.client.clientGUI).innerpanel).innerpanel);
-            		((TeacherShowCFields)((TeacherHomeUI)((HomeUI)Client.client.clientGUI).innerpanel).innerpanel).index = table.getSelectedRow();
-            		Client.client.handleMessageFromClientUI(new Message("SELECT * FROM courses",QTypes.ShowinTXTallCourses));
+            		((TeacherShowCFields)((TeacherHomeUI)((HomeUI)Client.client.clientGUI).innerpanel).innerpanel).index = row;
+    				Client.client.handleMessageFromClientUI(new Message("SELECT * FROM class_schedule WHERE teacher_id="+Client.client.user.getID()+" AND sem_id="+ Client.client.opnedsem,QTypes.showCoursesT));
             		//Client.client.handleMessageFromClientUI(new Message("SELECT course_id, course_name FROM courses",QTypes.GetAllCoursesids));
             		((TeacherHomeUI)((HomeUI)Client.client.clientGUI).innerpanel).resizeteacherhome();
             	}

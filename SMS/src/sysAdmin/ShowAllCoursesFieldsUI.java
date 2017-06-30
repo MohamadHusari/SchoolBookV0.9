@@ -352,12 +352,12 @@ public class ShowAllCoursesFieldsUI extends JPanel {
 			}
 		});
 		btnedit.setVisible(false);
-		btnedit.setIcon(new ImageIcon("img\\sysAdmin\\edit.png"));
+		btnedit.setIcon(new ImageIcon("D:\\SMS\\SMS\\img\\sysAdmin\\button new.png"));
 		btnedit.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
 		btnedit.setFocusable(false);
 		btnedit.setBorder(BorderFactory.createEmptyBorder());
 		btnedit.setBackground(Color.WHITE);
-		btnedit.setBounds(427, 214, 87, 34);
+		btnedit.setBounds(435, 214, 76, 31);
 		add(btnedit);
 
 	}
