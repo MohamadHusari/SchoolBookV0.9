@@ -454,6 +454,16 @@ public class Client extends AbstractClient {
 						
 						break;
 						
+					case 704:
+						if(((Request)msg).getRequest() instanceof TableModel)
+						{
+							
+						//((SecretaryHomeUI)Client.userMenu).ChangeJPanel(new ExceptionStudentsUI());
+							((TU_requestUI)((TeacherHomeUI)((HomeUI)clientGUI).innerpanel).innerpanel).tblTrequest.setModel((TableModel)(((Request)msg).getRequest()));
+						
+						}
+						break;
+						
 						//teacher
 						
 						

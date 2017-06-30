@@ -30,4 +30,5 @@ public class QTypes {
 	public static int EnteringHours=701;
 	public static int GetTeachunits1 = 702;
 	public static int showCoursesT = 703;
+	public static int tu_request = 704;
 }

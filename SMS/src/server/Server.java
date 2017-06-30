@@ -633,7 +633,17 @@ public class Server extends AbstractServer {
 				  break;
 				  
 				  
-				  
+			  case 704:
+				  rs=stmt.executeQuery(((Message)msg).GetQuery());
+				  TableModel tu=DbUtils.resultSetToTableModel(rs);
+					  try {
+							client.sendToClient(new Request(tu,QTypes.tu_request));
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+							serv.display("["+dtf.format(now)+"] Error Sending back to Client!");	
+						}
+				  break;
 				  
 				  
 				  

@@ -120,6 +120,7 @@ public class TeacherHomeUI extends JPanel {
 		    		    				innerpanel.removeAll();
 		    		    				innerpanel = new TU_requestUI();
 		    		    				contentPane.add(innerpanel);
+		    		    				Client.client.handleMessageFromClientUI(new Message("SELECT * FROM tu_req;",QTypes.tu_request));
 		    		    				//Client.client.handleMessageFromClientUI(new Message("SELECT course_id, course_name FROM courses",QTypes.GetAllCoursesids));
 		    		    				resizeteacherhome();
 		    		    				//contentPane.revalidate();
@@ -149,6 +150,7 @@ public class TeacherHomeUI extends JPanel {
 		    		    				innerpanel.removeAll();
 		    		    				innerpanel = new TeacherPreCourses();
 		    		    				contentPane.add(innerpanel);
+		    		    				
 		    		    				//Client.client.handleMessageFromClientUI(new Message("SELECT * FROM courses",QTypes.ShowinTXTallCourses));
 		    		    				//Client.client.handleMessageFromClientUI(new Message("SELECT course_id, course_name FROM courses",QTypes.GetAllCoursesids));
 		    		    				resizeteacherhome();
