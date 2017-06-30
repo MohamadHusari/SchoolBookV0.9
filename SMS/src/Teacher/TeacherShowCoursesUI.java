@@ -61,7 +61,7 @@ public class TeacherShowCoursesUI extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				((TeacherHomeUI)((HomeUI)Client.client.clientGUI).innerpanel).contentPane.remove(((TeacherHomeUI)((HomeUI)Client.client.clientGUI).innerpanel).innerpanel);
 				((TeacherShowCoursesUI)((TeacherHomeUI)((HomeUI)Client.client.clientGUI).innerpanel).innerpanel).removeAll();
-				((TeacherHomeUI)((HomeUI)Client.client.clientGUI).innerpanel).innerpanel = new TeacherShowCoursesUI();
+				((TeacherHomeUI)((HomeUI)Client.client.clientGUI).innerpanel).innerpanel = new TeacherShowCFields();
 				((TeacherHomeUI)((HomeUI)Client.client.clientGUI).innerpanel).contentPane.add(((TeacherHomeUI)((HomeUI)Client.client.clientGUI).innerpanel).innerpanel);
 				((TeacherShowCFields)((TeacherHomeUI)((HomeUI)Client.client.clientGUI).innerpanel).innerpanel).index = 0;
 				Client.client.handleMessageFromClientUI(new Message("SELECT * FROM class_schedule WHERE teacher_id="+Client.client.user.getID()+" AND sem_id="+ Client.client.opnedsem,QTypes.showCoursesT));
