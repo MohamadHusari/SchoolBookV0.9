@@ -26,6 +26,7 @@ import chat.Client;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.SystemColor;
 
 public class EditCourseUI extends JPanel {
 
@@ -51,7 +52,7 @@ public class EditCourseUI extends JPanel {
 		
 		scrollPane = new JScrollPane();
 		scrollPane.setBounds(28, 61, 218, 196);
-		scrollPane.setBorder(BorderFactory.createLineBorder(Color.black));
+		scrollPane.setBorder(BorderFactory.createLineBorder(SystemColor.activeCaption));
 		add(scrollPane);
 		list1 = new CheckBoxList();
 		list1.setFont(new Font("Comic Sans MS", Font.BOLD, 14));
