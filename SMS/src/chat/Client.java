@@ -375,6 +375,46 @@ public class Client extends AbstractClient {
 			
 			break;
 			
+			
+		case 207:
+			if(((Request)msg).getRequest() instanceof Boolean)
+			{
+				if(!(Boolean)(((Request)msg).getRequest())){
+					//DB is Empty
+					((EditCourseUI)((sysAdminHomeUI)((HomeUI)clientGUI).innerpanel).innerpanel).lblstatus.setVisible(true);
+				}
+			}
+			if(((Request)msg).getRequest() instanceof ArrayList<?>)
+			{
+				if(((ArrayList<?>)((Request)msg).getRequest()).get(0) instanceof String)
+				{
+					ArrayList<String> m = ((ArrayList<String>)((Request)msg).getRequest());
+					DefaultListModel lmdlEjemplo=new DefaultListModel();
+					for (int i = 0; i < m.size(); i++)
+						lmdlEjemplo.addElement(m.get(i));
+					((EditCourseUI)((sysAdminHomeUI)((HomeUI)clientGUI).innerpanel).innerpanel).list1.setModel(lmdlEjemplo);
+				}
+			}
+			break;
+			
+		case 208:
+			if(((Request)msg).getRequest() instanceof Boolean)
+			{
+				if(!(Boolean)(((Request)msg).getRequest())){
+					//DB is Empty
+					((EditCourseUI)((sysAdminHomeUI)((HomeUI)clientGUI).innerpanel).innerpanel).showerrdilog("The Course id is not available");
+				}
+			}
+			if(((Request)msg).getRequest() instanceof String)
+			{
+				
+				((EditCourseUI)((sysAdminHomeUI)((HomeUI)clientGUI).innerpanel).innerpanel).list1.addCheckBoxListSelectedValue(((Request)msg).getRequest(), false);
+				((EditCourseUI)((sysAdminHomeUI)((HomeUI)clientGUI).innerpanel).innerpanel).list1.updateUI();
+					
+			}
+			break;
+			
+			
 			/* Sys Admin */
 			/// teacher
 			

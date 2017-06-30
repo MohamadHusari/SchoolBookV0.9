@@ -127,15 +127,15 @@ public class sysAdminHomeUI extends JPanel {
 		    		    				//contentPane.repaint();
 		    		    				//lblNewLabel.setText(tp.getLastPathComponent().toString());
 		    		    			}
-		    		    			if(s.equals("Add Teach Unit"))
+		    		    			if(s.equals("Edit Course"))
 		    		    			{
 		    		    				savemenu = new String(s);
 		    		    				pressed = true;
 		    		    				contentPane.remove(innerpanel);
 		    		    				innerpanel.removeAll();
-		    		    				innerpanel = new ShowAllCoursesFieldsUI();
+		    		    				innerpanel = new EditCourseUI();
 		    		    				contentPane.add(innerpanel);
-		    		    				Client.client.handleMessageFromClientUI(new Message("SELECT * FROM courses",QTypes.ShowinTXTallCourses));
+		    		    				Client.client.handleMessageFromClientUI(new Message("SELECT course_id, course_name FROM courses",QTypes.GetAllCoursesids1));
 		    		    				//Client.client.handleMessageFromClientUI(new Message("SELECT course_id, course_name FROM courses",QTypes.GetAllCoursesids));
 		    		    				resizesysAdminHome();
 		    		    				//contentPane.revalidate();
@@ -153,15 +153,17 @@ public class sysAdminHomeUI extends JPanel {
 	public void resizesysAdminHome(){
 		int mypanelX = 0;
 		int mypanelY = 0;
-		if ( innerpanel.getWidth() >= contentPane.getWidth())
+		/*if ( innerpanel.getWidth() >= contentPane.getWidth())
 			mypanelX = innerpanel.getWidth();
 		else 
 			mypanelX = contentPane.getWidth();
 		if(innerpanel.getHeight() >= contentPane.getHeight() )
 			mypanelY = innerpanel.getHeight();
 		else
-			mypanelY = contentPane.getHeight();
+			mypanelY = contentPane.getHeight();*/
 		
+		mypanelX = innerpanel.getWidth();
+		mypanelY = innerpanel.getHeight();
 		//System.out.print(mypanelY +"  se\n");
 			//myorgpanel = 172 + mypanelY;
 		contentPane.setBounds(172, 0, mypanelX, mypanelY);

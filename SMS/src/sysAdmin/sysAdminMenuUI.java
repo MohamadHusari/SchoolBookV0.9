@@ -76,7 +76,7 @@ public class sysAdminMenuUI {
     set1.add(new DefaultMutableTreeNode(
         new TestNode("Show All Courses", Color.CYAN.darker(), d32, true)));
     set1.add(new DefaultMutableTreeNode(
-        new TestNode("Add Teach Unit", Color.GREEN, d32, true)));
+        new TestNode("Edit Course", Color.GREEN, d32, true)));
     DefaultMutableTreeNode set2 = new DefaultMutableTreeNode(
         new TestNode("SubCategory 2", Color.GREEN.darker().darker(), d64, false));
     DefaultMutableTreeNode set3 = new DefaultMutableTreeNode(

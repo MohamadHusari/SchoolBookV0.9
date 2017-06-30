@@ -374,7 +374,7 @@ public class Server extends AbstractServer {
 					}
 				  else 
 				  {
-					  Request req201=new Request(false,QTypes.GetTeachunits);
+					  Request req201=new Request(false,QTypes.GetAllCoursesids);
 					  try{
 						  client.sendToClient(req201);
 					  }catch(IOException ex){
@@ -496,6 +496,61 @@ public class Server extends AbstractServer {
 					  }
 				  }
 				  break;  
+				  
+				  
+				  
+			  case 207:
+				  rs = stmt.executeQuery(((Message) msg).GetQuery());
+				  if(rs.next()) { // Checks for any results and moves cursor to first row,
+					  ArrayList<String> allcourses=new ArrayList<String>();
+					    do { // Use 'do...while' to process the first row, while continuing to process remaining rows
+					    	allcourses.add(rs.getString(1) +" - " + rs.getString(2));
+					    	//System.out.print(alltu[i].getTeachUnit_ID() + " " +  alltu[i].getTeachUnit_Name() +"\n and hereeee");
+					    } while (rs.next());
+					    Request req207=new Request(allcourses,QTypes.GetAllCoursesids1);
+					    try{
+							  client.sendToClient(req207);
+						  }catch(IOException ex){
+							 //Do Somthing
+							  serv.display("["+dtf.format(now)+"] Error Sending back Teaching units statment!");
+						  }
+					}
+				  else 
+				  {
+					  Request req207=new Request(false,QTypes.GetAllCoursesids1);
+					  try{
+						  client.sendToClient(req207);
+					  }catch(IOException ex){
+						 //Do Somthing
+						  serv.display("["+dtf.format(now)+"] Error Sending back false statment!");
+					  }
+				  }
+				  break;
+				  
+			  case 208:
+				  rs = stmt.executeQuery(((Message) msg).GetQuery());
+				  String retsos1= ((Message) msg).GetQuery().substring(((Message) msg).GetQuery().length() - 5, ((Message) msg).GetQuery().length());
+				  if(rs.next()) { // Checks for any results and moves cursor to first row,
+						  retsos1 = retsos1 + " - "+rs.getString(1);
+					    Request req208=new Request(retsos1,QTypes.Getspaceficcoursename1);
+					    try{
+							  client.sendToClient(req208);
+						  }catch(IOException ex){
+							 //Do Somthing
+							  serv.display("["+dtf.format(now)+"] Error Sending back Teaching units statment!");
+						  }
+				 }
+				  else 
+				  {
+					  Request req208=new Request(false,QTypes.Getspaceficcoursename1);
+					  try{
+						  client.sendToClient(req208);
+					  }catch(IOException ex){
+						 //Do Somthing
+						  serv.display("["+dtf.format(now)+"] Error Sending back false statment!");
+					  }
+				  }
+				  break;
 				  
 				//System-Administrator	Cases
 				//Teacher

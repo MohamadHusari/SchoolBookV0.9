@@ -26,6 +26,8 @@ public class QTypes {
 	public static int AddnewCourse = 203;
 	public static int AddnewPreCourse = 204;
 	public static int ShowinTXTallCourses = 206;
+	public static int GetAllCoursesids1 = 207;
+	public static int Getspaceficcoursename1 = 208;
 	public static int getcurrenthours=700;
 	public static int EnteringHours=701;
 	public static int GetTeachunits1 = 702;
