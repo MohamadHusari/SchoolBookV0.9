@@ -89,7 +89,7 @@ public class LoginUI extends JFrame {
 		lblerr.setForeground(Color.green);
 		setstatus("Your Account has Been successfully login\nRedirect in 1 sec...");
 		DateFormat dateformat = new SimpleDateFormat ("yyyy-MM-dd HH:mm:ss.ms");
-		Client.client.handleMessageFromClientUI(new Message ("SELECT id FROM sms.semster WHERE \"" +dateformat.format(mydate) + "\" between start_date and end_date", QTypes.GetOpenedSem ));
+		Client.client.handleMessageFromClientUI(new Message ("SELECT id FROM semster WHERE \"" +dateformat.format(mydate) + "\" between start_date and end_date", QTypes.GetOpenedSem ));
 		ActionListener task = new ActionListener() {
 	        public void actionPerformed(ActionEvent e) {
 	        	Client.clientGUI.dispose();
