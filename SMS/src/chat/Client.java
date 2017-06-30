@@ -504,6 +504,55 @@ public class Client extends AbstractClient {
 						}
 						break;
 						
+					case 705:
+						if(((Request)msg).getRequest() instanceof Boolean)
+						{
+							if(!(Boolean)(((Request)msg).getRequest())){
+								//DB is Empty
+								System.out.print("empty");
+							}
+						}
+						if(((Request)msg).getRequest() instanceof ArrayList<?>)
+						{
+							if(((ArrayList<?>)((Request)msg).getRequest()).get(0) instanceof Course)
+							{
+								ArrayList<Course> m = ((ArrayList<Course>)((Request)msg).getRequest());
+								for (int i = 0; i < m.size(); i++) {
+									((TeacherUplaodAss)((TeacherHomeUI)((HomeUI)clientGUI).innerpanel).innerpanel).choice.add(m.get(i).getCourse_Name() + " '" + m.get(i).getCourse_ID() +"'");
+									//((TeacherUploadMat)((TeacherHomeUI)((HomeUI)clientGUI).innerpanel).innerpanel).choice2.add(m.get(i).getCourse_Name() + " '" + m.get(i).getCourse_ID() +"'");
+									
+								}
+							}
+						}
+						break;
+					case 706:
+						if(((Request)msg).getRequest() instanceof Boolean)
+						{
+							if(!(Boolean)(((Request)msg).getRequest())){
+								//DB is Empty
+								System.out.print("empty");
+							}
+						}
+						if(((Request)msg).getRequest() instanceof ArrayList<?>)
+						{
+							if(((ArrayList<?>)((Request)msg).getRequest()).get(0) instanceof Course)
+							{
+								ArrayList<Course> m = ((ArrayList<Course>)((Request)msg).getRequest());
+								for (int i = 0; i < m.size(); i++) {
+									//((TeacherUplaodAss)((TeacherHomeUI)((HomeUI)clientGUI).innerpanel).innerpanel).choice.add(m.get(i).getCourse_Name() + " '" + m.get(i).getCourse_ID() +"'");
+									((TeacherUploadMat)((TeacherHomeUI)((HomeUI)clientGUI).innerpanel).innerpanel).choice2.add(m.get(i).getCourse_Name() + " '" + m.get(i).getCourse_ID() +"'");
+									
+								}
+							}
+						}
+						break;
+						
+						
+						
+						
+						
+						
+						
 						//teacher
 						
 						

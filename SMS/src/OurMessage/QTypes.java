@@ -33,4 +33,7 @@ public class QTypes {
 	public static int GetTeachunits1 = 702;
 	public static int showCoursesT = 703;
 	public static int tu_request = 704;
+	public static int TeacherUploadAss = 705;
+	public static int TeacherUploadMat = 706;
+	public static int TeacherEstimating = 707;
 }

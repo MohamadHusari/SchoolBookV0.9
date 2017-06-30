@@ -76,9 +76,12 @@ public class TeacherMenuUI {
         */
     set1.add(new DefaultMutableTreeNode(
         new TestNode("Show Courses", Color.CYAN.darker(), d32, true)));
+    /*
     set1.add(new DefaultMutableTreeNode(
         new TestNode("Define Pre Courses", Color.GREEN, d32, true)));
+        */
     DefaultMutableTreeNode set2 = new DefaultMutableTreeNode(
+    
         new TestNode("Requests", Color.GREEN.darker().darker(), d64, false));
     DefaultMutableTreeNode set3 = new DefaultMutableTreeNode(
         new TestNode("Changing Request", Color.GREEN, d32, false));

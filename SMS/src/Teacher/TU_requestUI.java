@@ -41,7 +41,7 @@ public class TU_requestUI extends JPanel {
 		       }; 
 		 tblTrequest.setBorder(new MatteBorder(1, 1, 1, 1, Color.BLACK));
 		 tblTrequest.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		 tblTrequest.setBounds(10, 31, 467, 228);
+		 tblTrequest.setBounds(10, 31, 467, 178);
 		 add(tblTrequest);
 		JLabel lblNewLabel = new JLabel("Send request to SysAdmin to register to teach unit");
 		lblNewLabel.setBounds(10, 258, 292, 14);
@@ -63,14 +63,18 @@ public class TU_requestUI extends JPanel {
 		});
 		btnnewreq.setBounds(314, 254, 135, 23);
 		add(btnnewreq);
-		lblRequest.setBounds(30, 11, 46, 14);
+		lblRequest.setBounds(10, 6, 64, 14);
 		add(lblRequest);
-		lblTeachUnit.setBounds(142, 11, 70, 14);
+		lblTeachUnit.setBounds(103, 6, 70, 14);
 		add(lblTeachUnit);
-		lblAprove.setBounds(256, 11, 46, 14);
+		lblAprove.setBounds(203, 6, 46, 14);
 		add(lblAprove);
-		lblType.setBounds(349, 11, 46, 14);
+		lblType.setBounds(288, 6, 46, 14);
 		add(lblType);
+		
+		JLabel lblSemster = new JLabel("Semster");
+		lblSemster.setBounds(382, 6, 58, 14);
+		add(lblSemster);
 		
 	
 		
