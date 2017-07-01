@@ -1,0 +1,36 @@
+package SchoolAdmin;
+
+import java.io.*;
+import java.net.*;
+import java.util.regex.*;
+import javax.swing.*;
+
+
+public class webloader {
+    static JComponent page;
+    public static void loadcode(){
+    /*    JEditorPane jep = new JEditorPane();
+         jep.setEditable(false);   
+
+         try {
+        	File f = new File("htmlfile.html");
+           jep.setPage(f.toURI().toURL());
+         }
+         catch (IOException e) {
+           jep.setContentType("text/html");
+           jep.setText("<html>Could not load webpage</html>");
+         } 
+
+         JScrollPane scrollPane = new JScrollPane(jep);     
+         JFrame f = new JFrame("htmlfile.html");
+         f.getContentPane().add(scrollPane);
+         f.setSize(512, 342);
+        f.setVisible(true);*/
+         }
+    
+    public static void main(String [] args){
+    	loadcode();
+    }
+    
+    
+}

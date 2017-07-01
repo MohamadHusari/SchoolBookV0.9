@@ -272,9 +272,11 @@ public class Server extends AbstractServer {
 				  
 			  case 15:
 				  rs=stmt.executeQuery(((Message)msg).GetQuery());
-				  HashMap<String,Integer> grades = new HashMap<String,Integer>();
+				  HashMap<Integer,Integer> grades = new HashMap<Integer,Integer>();
 				  while(rs.next()){
-					  grades.put(rs.getString(0), rs.getInt(1));
+					 int id = rs.getInt(1);
+					 int grade = rs.getInt(2);
+					  grades.put(id, grade);
 				  }
 				  try {
 						client.sendToClient(new Request(grades,QTypes.getgrades));

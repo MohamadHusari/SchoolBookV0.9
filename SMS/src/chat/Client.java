@@ -51,7 +51,10 @@ public class Client extends AbstractClient {
     //Get more entities
     public static JPanel userMenu;
     public static JPanel selectedMenu;
+    
+    
 	/**
+	 * 
 	 * Constructor for creating the client.
 	 * 
 	 * @param host
@@ -210,8 +213,12 @@ public class Client extends AbstractClient {
 			
 			
 		case 15:
-			((ReportHisto)((SchoolHomeAdminGUI)((HomeUI)Client.clientGUI).innerpanel).tmp_panel).fillArray((HashMap<String, Integer>) ((Request)msg).getRequest());
+			((ReportHisto)((SchoolHomeAdminGUI)((HomeUI)Client.clientGUI).innerpanel).tmp_panel).setflag(true);
+			((ReportHisto)((SchoolHomeAdminGUI)((HomeUI)Client.clientGUI).innerpanel).tmp_panel).fillArray((HashMap<Integer, Integer>) ((Request)msg).getRequest());
+			System.out.println("Done..");
 			break;
+			
+			
 		case 101:
 			((SecretaryHomeUI)Client.userMenu).ChangeJPanel(new CreatingSemesterUI());
 			if(((Request)msg).getRequest() instanceof Boolean)

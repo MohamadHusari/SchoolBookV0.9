@@ -1,0 +1,93 @@
+package SchoolAdmin;
+
+import javax.swing.JPanel;
+
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartFrame;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.renderer.category.BarRenderer;
+import org.jfree.data.category.DefaultCategoryDataset;
+
+import OurMessage.Message;
+import OurMessage.QTypes;
+import chat.Client;
+
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.awt.event.ActionEvent;
+
+public class ReportHisto extends JPanel {
+
+
+	private final JButton Different_Classes = new JButton("Different Classes");
+	private int [] ArrayCounter = new int [100];
+	private HashMap<String , Integer> StudentsGrades = new HashMap<String, Integer>();
+	public boolean done =false;
+	public ReportHisto(){
+		
+		setLayout(null);
+		Different_Classes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Client.opnedsem="m/7";
+				String Q=new String ("SELECT * FROM studentgrades WHERE sem_id ="+Client.opnedsem+";");	
+			//	String Q1=new String("SELECT Grade,idClass FROM studentgrades");
+				Message msg = new Message(Q,QTypes.getgrades);
+				Client.client.handleMessageFromClientUI(msg);
+				while(!done);
+				LineChart_AWT chart = new LineChart_AWT("","",ArrayCounter);
+					chart.setvisible(true);
+//				JFreeChart chart = ChartFactory.createLineChart("Classes For Teacher", "Grades", "Number of Students", createDataset(),PlotOrientation.VERTICAL,false,true,true);
+//				BarRenderer renderer = new BarRenderer();
+//				CategoryPlot plot = null;
+//				ChartFrame frame = new ChartFrame("Chart ", chart);
+//				frame.setVisible(true);
+//				frame.setSize(400,650);
+//			
+//				   try {
+//						PrintWriter writer;
+//						writer = new PrintWriter("data"+".tsv", "UTF-8");
+//					    writer.println("Grade	Class");
+//					
+//					    for(int i=0; i<10;i++)
+//					    {
+//					    writer.println(+i+ArrayCounter[0]);
+//					    }
+//					    writer.close();
+//					} catch (FileNotFoundException e2) {
+//						// TODO Auto-generated catch block
+//						e2.printStackTrace();
+//					} catch (UnsupportedEncodingException e) {
+//						// TODO Auto-generated catch block
+//						e.printStackTrace();
+//					}
+//				
+//			}
+//		});
+//		
+				
+	}
+		});
+		
+Different_Classes.setBounds(241, 91, 156, 23);
+add(Different_Classes);
+		
+	}
+	
+	@SuppressWarnings("unchecked")
+	public void fillArray(HashMap<String, Integer> msg){
+		this.StudentsGrades = (HashMap<String, Integer>) msg.clone();
+		for(String key : msg.keySet()){
+			ArrayCounter[msg.get(key)]++;
+		}
+	}
+	
+	
+		}
+

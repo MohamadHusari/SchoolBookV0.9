@@ -1,0 +1,24 @@
+package SchoolAdmin;
+
+//import com.teamdev.jxbrowser.chromium.Browser;
+//import com.teamdev.jxbrowser.chromium.swing.BrowserView;
+import javax.swing.*;
+import java.awt.*;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+
+public class browserSample {
+   public static void main(String[] args) {
+//       browser browser = new browser();
+//       browserView browserView = new browserView(browser);
+//       JFrame frame = new JFrame("JxBrowser");
+//       frame.add(browserView, BorderLayout.CENTER);
+//       frame.setSize(700, 500);
+//       frame.setVisible(true);
+//       browser.loadURL("http://www.google.com");
+	   
+	
+       
+   }
+}

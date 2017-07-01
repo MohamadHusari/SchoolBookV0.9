@@ -9,5 +9,12 @@
 	<classpathentry kind="lib" path="Connector/jide-common.jar"/>
 	<classpathentry kind="lib" path="Connector/jcommon-1.0.23.jar"/>
 	<classpathentry kind="lib" path="Connector/jfreechart-1.0.19.jar"/>
+	<classpathentry kind="lib" path="Connector/jxbrowser-1.4.jar"/>
+	<classpathentry kind="lib" path="Connector/jxbrowser-2.8.jar"/>
+	<classpathentry kind="lib" path="Connector/jxbrowser-6.14.2.jar"/>
+	<classpathentry kind="lib" path="Connector/jxbrowser-linux32-6.14.2.jar"/>
+	<classpathentry kind="lib" path="Connector/jxbrowser-linux64-6.14.2.jar"/>
+	<classpathentry kind="lib" path="Connector/jxbrowser-mac-6.14.2.jar"/>
+	<classpathentry kind="lib" path="Connector/jxbrowser-win32-6.14.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

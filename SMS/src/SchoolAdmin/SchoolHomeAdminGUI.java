@@ -4,6 +4,8 @@ import javax.swing.JPanel;
 
 import OurMessage.Message;
 import OurMessage.QTypes;
+import Student.HomeStudent;
+import Student.ViewReportGui;
 import User.HomeUI;
 import chat.Client;
 
@@ -20,6 +22,7 @@ public class SchoolHomeAdminGUI extends JPanel {
 	public JButton button;
 	public JButton button_1;
 	public JButton button_2;
+	private JButton StaticInfo;
 	//protected RequestPanel tmp_panel;
 
 	public SchoolHomeAdminGUI() {
@@ -56,7 +59,7 @@ public class SchoolHomeAdminGUI extends JPanel {
 		menu_panel.add(button);
 		
 		 button_1 = new JButton("Registration Requests");
-		button_1.addActionListener(new ActionListener() {
+		 button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
 				setflag(2);
@@ -79,9 +82,19 @@ public class SchoolHomeAdminGUI extends JPanel {
 		button_2.setBounds(10, 125, 166, 23);
 		menu_panel.add(button_2);
 		
-	
+		StaticInfo = new JButton("Static Info");
+		StaticInfo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
 		
+				((SchoolHomeAdminGUI)((HomeUI)Client.clientGUI).innerpanel).remove(tmp_panel);
+				((HomeUI)Client.clientGUI).resizeHome();
+				((SchoolHomeAdminGUI)((HomeUI)Client.clientGUI).innerpanel).ChangeJPanel(new ReportHisto()); 
+			}
+		});
 		
+		StaticInfo.setBounds(10, 159, 166, 23);
+		menu_panel.add(StaticInfo);
+
 	}
 	public void ChangeJPanel(JPanel panel){
 		((HomeUI)Client.clientGUI).innerpanel.remove(((SchoolHomeAdminGUI)((HomeUI)Client.clientGUI).innerpanel).tmp_panel);

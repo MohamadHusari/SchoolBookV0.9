@@ -1,0 +1,18 @@
+package SchoolAdmin;
+
+public class GradeClassData {
+
+	private int [] ArrayCounter = new int [100];
+	
+	
+	private String idClass;
+	
+	
+	public GradeClassData()
+	{
+		String Query=new String("SELECT class_id FROM");
+		
+	}
+	
+	
+}

@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="javax.swing.JPanel"/>
 <fullyQualifiedTypeName name="com.sun.prism.Graphics"/>
 <fullyQualifiedTypeName name="javax.swing.JToggleButton"/>
 <fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
 <fullyQualifiedTypeName name="java.text.DateFormat"/>
-<fullyQualifiedTypeName name="OurMessage.QTypes"/>
-<fullyQualifiedTypeName name="OurMessage.Message"/>
 <fullyQualifiedTypeName name="com.mysql.jdbc.ResultSet"/>
 <fullyQualifiedTypeName name="net.proteanit.sql.DbUtils"/>
 <fullyQualifiedTypeName name="javax.swing.table.TableModel"/>
@@ -14,10 +11,29 @@
 <fullyQualifiedTypeName name="Secretary.HomeSelectUI"/>
 <fullyQualifiedTypeName name="javax.swing.border.MatteBorder"/>
 <fullyQualifiedTypeName name="Entities.ClassRoom"/>
-<fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="java.lang.reflect.Array"/>
-<fullyQualifiedTypeName name="chat.Client"/>
 <fullyQualifiedTypeName name="Entities.Student"/>
 <fullyQualifiedTypeName name="Entities.StudentName"/>
 <fullyQualifiedTypeName name="javax.swing.table.DefaultTableModel"/>
+<fullyQualifiedTypeName name="javax.swing.JPanel"/>
+<fullyQualifiedTypeName name="User.GetInfo"/>
+<fullyQualifiedTypeName name="chat.Client"/>
+<fullyQualifiedTypeName name="OurMessage.Message"/>
+<fullyQualifiedTypeName name="OurMessage.QTypes"/>
+<fullyQualifiedTypeName name="org.jfree.chart.JFreeChart"/>
+<fullyQualifiedTypeName name="org.jfree.chart.ChartFactory"/>
+<fullyQualifiedTypeName name="org.jfree.data.category.DefaultCategoryDataset"/>
+<fullyQualifiedTypeName name="org.jfree.chart.plot.PlotOrientation"/>
+<fullyQualifiedTypeName name="org.jfree.chart.renderer.category.BarRenderer"/>
+<fullyQualifiedTypeName name="org.jfree.chart.plot.CategoryPlot"/>
+<fullyQualifiedTypeName name="org.jfree.chart.ChartFrame"/>
+<fullyQualifiedTypeName name="SchoolAdmin.ReportHisto"/>
+<fullyQualifiedTypeName name="java.io.PrintWriter"/>
+<fullyQualifiedTypeName name="java.io.FileNotFoundException"/>
+<fullyQualifiedTypeName name="javax.swing.UIManager"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="java.util.HashMap"/>
+<fullyQualifiedTypeName name="org.jfree.ui.RefineryUtilities"/>
+<fullyQualifiedTypeName name="com.teamdev.jxbrowser.chromium.Browser"/>
+<fullyQualifiedTypeName name="java.lang.System"/>
 </qualifiedTypeNameHistroy>

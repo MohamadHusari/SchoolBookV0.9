@@ -19,6 +19,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.Timer;
+import javax.swing.UIManager;
 
 import java.awt.Color;
 import javax.swing.JTextField;
@@ -54,6 +55,8 @@ public class LoginUI extends JFrame {
 	 * Launch the application.
 	 */
 	public void startClient(String host, int port) {
+		
+		
         try {
             Client.client = new Client(host, port, this);
         } catch (IOException exception) {
