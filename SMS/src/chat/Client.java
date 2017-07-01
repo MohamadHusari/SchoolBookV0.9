@@ -24,6 +24,7 @@ import Entities.StudentName;
 import Entities.TeachUnit;
 import Entities.User;
 import OurMessage.*;
+import User.GetInfo;
 import User.HomeUI;
 import sysAdmin.*;
 import User.LoginUI;
@@ -107,6 +108,10 @@ public class Client extends AbstractClient {
 		int op = ((Request)msg).getRtype();
 		System.out.println("Code: "+op);
 		switch(op){
+		case 2: 
+			((SchoolHomeAdminGUI)((HomeUI)Client.clientGUI).innerpanel).ChangeJPanel(new GetInfo());	
+			((GetInfo)((SchoolHomeAdminGUI)((HomeUI)Client.clientGUI).innerpanel).tmp_panel).info.setModel((TableModel)(((Request)msg).getRequest()));
+			break;
 		case 4:
 			if(((Request)msg).getRequest() instanceof Boolean)
 			{
@@ -152,32 +157,54 @@ public class Client extends AbstractClient {
 			break;
 			
 		case 8:
-			
+			// update after click
 			((SchoolHomeAdminGUI)((HomeUI)Client.clientGUI).innerpanel).button.doClick();
 //			((RequestPanel)((SchoolHomeAdminGUI)((HomeUI)Client.clientGUI).innerpanel).tmp_panel).lblRequestDone.setVisible(true);
 			((RequestPanel)((SchoolHomeAdminGUI)((HomeUI)Client.clientGUI).innerpanel).tmp_panel).lblRequestDone.setVisible(true);
+		
 			break;
 		case 9:
+			// get blocking requests
 			((SchoolHomeAdminGUI)((HomeUI)Client.clientGUI).innerpanel).ChangeJPanel(new RequestPanel());	
 			((RequestPanel)((SchoolHomeAdminGUI)((HomeUI)Client.clientGUI).innerpanel).tmp_panel).table.setModel((TableModel)(((Request)msg).getRequest()));
+			((RequestPanel)((SchoolHomeAdminGUI)((HomeUI)Client.clientGUI).innerpanel).tmp_panel).tmp = ((SchoolHomeAdminGUI)((HomeUI)Client.clientGUI).innerpanel);
 			break;
 
 			
 			
 		case 10:
-			((SchoolHomeAdminGUI)((HomeUI)Client.clientGUI).innerpanel).button.doClick();
-//			((RequestPanel)((SchoolHomeAdminGUI)((HomeUI)Client.clientGUI).innerpanel).tmp_panel).lblRequestDone.setVisible(true);
-			((RequestPanel)((SchoolHomeAdminGUI)((HomeUI)Client.clientGUI).innerpanel).tmp_panel).lblRequestDone.setVisible(true);
+		// get registration requests
+			((SchoolHomeAdminGUI)((HomeUI)Client.clientGUI).innerpanel).ChangeJPanel(new RequestPanel());	
+			((RequestPanel)((SchoolHomeAdminGUI)((HomeUI)Client.clientGUI).innerpanel).tmp_panel).table.setModel((TableModel)(((Request)msg).getRequest()));
+			((RequestPanel)((SchoolHomeAdminGUI)((HomeUI)Client.clientGUI).innerpanel).tmp_panel).tmp = ((SchoolHomeAdminGUI)((HomeUI)Client.clientGUI).innerpanel);
 			break;
 			
 		case 11:
-			((RequestPanel)((SchoolHomeAdminGUI)((HomeUI)Client.clientGUI).innerpanel).tmp_panel).table.setModel((TableModel)(((Request)msg).getRequest()));
+			// update 
+			((SchoolHomeAdminGUI)((HomeUI)Client.clientGUI).innerpanel).button_1.doClick();
+//			((SchoolHomeAdminGUI)((HomeUI)Client.clientGUI).innerpanel).ChangeJPanel(new RequestPanel());	
+//			((RequestPanel)((SchoolHomeAdminGUI)((HomeUI)Client.clientGUI).innerpanel).tmp_panel).table.setModel((TableModel)(((Request)msg).getRequest()));
 			break;
 			
 		case 12:
 			
 		//((ReadOnly)((SchoolHomeAdminGUI)((HomeUI)Client.clientGUI).innerpanel).Read_panel).Read_table.setModel((TableModel)(((Request)msg).getRequest()));
 		
+			break;
+			
+			
+			
+			
+			
+		case 13://get
+			((SchoolHomeAdminGUI)((HomeUI)Client.clientGUI).innerpanel).ChangeJPanel(new RequestPanel());	
+			((RequestPanel)((SchoolHomeAdminGUI)((HomeUI)Client.clientGUI).innerpanel).tmp_panel).table.setModel((TableModel)(((Request)msg).getRequest()));
+			((RequestPanel)((SchoolHomeAdminGUI)((HomeUI)Client.clientGUI).innerpanel).tmp_panel).tmp = ((SchoolHomeAdminGUI)((HomeUI)Client.clientGUI).innerpanel);
+			
+			break;
+			
+		case 14:
+			((SchoolHomeAdminGUI)((HomeUI)Client.clientGUI).innerpanel).button_2.doClick();
 			break;
 			
 		case 101:

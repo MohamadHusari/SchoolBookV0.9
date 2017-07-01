@@ -94,7 +94,7 @@ public class RequestPanel extends JPanel {
 				
 					case 1://blocking request 
 						int index=table.getSelectedRow();
-						int id =Integer.parseInt(table.getValueAt(index, 1).toString());
+						int id =Integer.parseInt(table.getValueAt(index, 0).toString());
 						System.out.println(id);
 						String Query="UPDATE request_block SET approve='Approved' WHERE id_Student="+id+";";
 						Message msg=new Message(Query,QTypes.updateBlockRequest);
@@ -114,10 +114,12 @@ public class RequestPanel extends JPanel {
 				case 3://for changing teacher
 					
 					int index3=table.getSelectedRow();
-					int id3 =Integer.parseInt(table.getValueAt(index3, 1).toString());
-					System.out.println(id3);
-					String Query3="UPDATE teacher_requests SET aprove='Approved' WHERE idTeacher="+id3+";";
-					Message msg3=new Message(Query3,QTypes.updateReq);
+					String courseid =table.getValueAt(index3, 3).toString();
+					String classid =table.getValueAt(index3, 0).toString();
+					
+					
+					String Query3="UPDATE teacher_requests SET aprove='Approved' WHERE idClass='"+classid+"' AND idCourse='"+courseid+"';";
+					Message msg3=new Message(Query3,QTypes.updateReqTeacher);
 					Client.client.handleMessageFromClientUI(msg3);
 					
 					

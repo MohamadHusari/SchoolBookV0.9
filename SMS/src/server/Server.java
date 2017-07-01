@@ -92,6 +92,21 @@ public class Server extends AbstractServer {
 			  int op = ((Message)msg).GetQType();
 			  
 			  switch(op){
+			  case 1: 
+				  stmt.executeUpdate(((Message)msg).GetQuery());
+				 
+				  break;
+			  case 2:
+				  rs=stmt.executeQuery(((Message)msg).GetQuery());
+				  TableModel inforeq=DbUtils.resultSetToTableModel(rs);
+				  try {
+						client.sendToClient(new Request(inforeq,QTypes.select));
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+						serv.display("["+dtf.format(now)+"] Error Sending back to Client!");	
+					}
+				  break;
 			  case 4:
 				  String[] parts = (((Message)msg).GetQuery()).split("/");
 				  stmt.executeUpdate(parts[0]);
@@ -229,6 +244,31 @@ public class Server extends AbstractServer {
 				  
 			break;
 				  
+			
+			  case 13://get 
+				  rs=stmt.executeQuery(((Message)msg).GetQuery());
+				  TableModel req5=DbUtils.resultSetToTableModel(rs);
+				  try {
+						client.sendToClient(new Request(req5,QTypes.getReqTeacher));
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+						serv.display("["+dtf.format(now)+"] Error Sending back to Client!");	
+					}
+				  
+				  break;
+				  
+				  
+			  case 14:
+				  stmt.executeUpdate(((Message)msg).GetQuery());
+				  Request req6=new Request(true,QTypes.updateReqTeacher);
+				  try {
+					client.sendToClient(req6);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				  break;  	  
 				  
 				  
 				  

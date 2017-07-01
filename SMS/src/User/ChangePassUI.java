@@ -3,15 +3,20 @@ package User;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
+
+import OurMessage.Message;
+import OurMessage.QTypes;
+import chat.Client;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class ChangePassUI extends JPanel {
 	
-	private JPasswordField passwordField;
-	private JPasswordField passwordField_1;
-	private JPasswordField passwordField_2;
+	private JPasswordField OldPassUser;
+	private JPasswordField newPasswordUser;
+	private JPasswordField RetryNewPass;
 	private JLabel lblNewLabel_1; 
 	private JLabel lblNewLabe2;
 	private JLabel lblNewLabel_2;
@@ -28,17 +33,20 @@ public class ChangePassUI extends JPanel {
 		label.setBounds(10, 51, 90, 14);
 		add(label);
 		
+
+		OldPassUser = new JPasswordField();
+		OldPassUser.setBounds(166, 48, 157, 20);
+		add(OldPassUser);
+		
+		
 		JLabel label_1 = new JLabel("New Password:");
 		label_1.setBounds(10, 92, 106, 14);
 		add(label_1);
 		
-		passwordField = new JPasswordField();
-		passwordField.setBounds(166, 48, 157, 20);
-		add(passwordField);
 		
-		passwordField_1 = new JPasswordField();
-		passwordField_1.setBounds(166, 89, 157, 20);
-		add(passwordField_1);
+		newPasswordUser = new JPasswordField();
+		newPasswordUser.setBounds(166, 89, 157, 20);
+		add(newPasswordUser);
 		
 		JLabel label_2 = new JLabel("Retry New Password:");
 		label_2.setBounds(10, 135, 120, 14);
@@ -51,9 +59,11 @@ public class ChangePassUI extends JPanel {
 		
 		
 		
-		passwordField_2 = new JPasswordField();
-		passwordField_2.setBounds(166, 132, 157, 20);
-		add(passwordField_2);
+		RetryNewPass = new JPasswordField();
+		RetryNewPass.setBounds(166, 132, 157, 20);
+		add(RetryNewPass);
+		
+		
 		 lblNewLabel_1 = new JLabel("Password Doesnt Match");
 		lblNewLabel_1.setBounds(328, 135, 146, 14);
 		lblNewLabel_1.setVisible(false);
@@ -70,15 +80,17 @@ public class ChangePassUI extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				 boolean flag=true;
-					
-					//if(!(Client.getPassword().equals(passwordField))
+					String oldpass = Client.user.getPassword();
+					String newpass = new String(OldPassUser.getPassword());
+					if(!(oldpass.equals(newpass)))
 					{
 
 						lblNewLabe2.setVisible(true);
 						flag=false;
 					}
-					
-					if(!(passwordField_1.equals(passwordField_2)))
+					newpass = new String (newPasswordUser.getPassword());
+					String newpassret = new String (RetryNewPass.getPassword());
+					if(!(newpass.equals(newpassret)))
 					{
 
 						lblNewLabel_1.setVisible(true);
@@ -88,10 +100,11 @@ public class ChangePassUI extends JPanel {
 					
 					if(flag){
 						//update data base//
-						String Query = new String("UPDATE users SET password="+passwordField_2);
-						//	User.setpassword(passwordField_2);//Update the Entity// 
+						String Query = new String("UPDATE users SET password="+newpass+" WHERE id="+Client.client.user.getID()+";");
+						Client.user.setPassword(newpass);
 						lblNewLabel_2.setVisible(true);
-
+						Message msg= new Message(Query,QTypes.update);
+						Client.client.handleMessageFromClientUI(msg);
 			}
 			}
 		});

@@ -18,6 +18,8 @@ public class SchoolHomeAdminGUI extends JPanel {
 	public JPanel menu_panel;
 	public JPanel tmp_panel = new JPanel();
 	public JButton button;
+	public JButton button_1;
+	public JButton button_2;
 	//protected RequestPanel tmp_panel;
 
 	public SchoolHomeAdminGUI() {
@@ -53,7 +55,7 @@ public class SchoolHomeAdminGUI extends JPanel {
 		button.setBounds(10, 57, 166, 23);
 		menu_panel.add(button);
 		
-		JButton button_1 = new JButton("Registration Requests");
+		 button_1 = new JButton("Registration Requests");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
@@ -66,7 +68,14 @@ public class SchoolHomeAdminGUI extends JPanel {
 		button_1.setBounds(10, 91, 166, 23);
 		menu_panel.add(button_1);
 		
-		JButton button_2 = new JButton("Changing Teacher Request");
+	 button_2 = new JButton("Changing Teacher Request");
+		button_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				setflag(3);
+				Client.client.handleMessageFromClientUI(new Message("SELECT * FROM teacher_requests WHERE aprove ='NYD' AND status=0;",QTypes.getReqTeacher));
+			}
+		});
 		button_2.setBounds(10, 125, 166, 23);
 		menu_panel.add(button_2);
 		

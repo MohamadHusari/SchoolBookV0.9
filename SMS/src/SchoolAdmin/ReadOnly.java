@@ -80,7 +80,7 @@ public class ReadOnly extends JPanel  {
 		});
 		
 		
-		PreCourses.setBounds(232, 167, 179, 23);
+		PreCourses.setBounds(233, 157, 179, 23);
 		
 		add(PreCourses);
 		ShowRequest.addActionListener(new ActionListener() {
@@ -92,7 +92,7 @@ public class ReadOnly extends JPanel  {
 				Data Window=new Data();
 			}
 		});
-		ShowRequest.setBounds(233, 201, 178, 23);
+		ShowRequest.setBounds(233, 191, 178, 23);
 		
 		add(ShowRequest);
 		

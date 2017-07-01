@@ -113,8 +113,15 @@ public class HomeUI extends JFrame {
 		btnchangepass.setBorderPainted(false);
 		btnchangepass.setBounds(358, 11, 30, 30);
 		contentPane.add(btnchangepass);
+		
 		btngetinfo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				try {
+					Client.client.sendToServer(new Message("Select date FROM login_history WHERE userid="+Client.user.getID()+";",QTypes.select));
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		

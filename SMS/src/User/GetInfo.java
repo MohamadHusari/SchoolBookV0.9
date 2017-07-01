@@ -1,18 +1,56 @@
 package User;
 
 import javax.swing.JPanel;
+import javax.swing.JTable;
+
+import SchoolAdmin.SchoolHomeAdminGUI;
+import chat.Client;
 
 public class GetInfo extends JPanel{
+	public  JTable info = new JTable(){
+		   public boolean isCellEditable(int row,int column){  
+	           Object o = getValueAt(row,column);  
+	           if(o!=null) return false;  
+	           return true;  
+	         }  
+	       }; 
+
+
 	public GetInfo() {
-		
-		
-		
-		
-		
-		
+		setLayout(null);
+		info.setBounds(213, 11, 320, 278);
+		info.setCellSelectionEnabled(false);
+		add(info);
 	}
 	
 	
 	
-
+	
+	public void ChangeJPanel(JPanel panel){
+		((HomeUI)Client.clientGUI).innerpanel.remove(((SchoolHomeAdminGUI)((HomeUI)Client.clientGUI).innerpanel).tmp_panel);
+		((SchoolHomeAdminGUI)((HomeUI)Client.clientGUI).innerpanel).tmp_panel=panel;
+		((HomeUI)Client.clientGUI).innerpanel.add(((SchoolHomeAdminGUI)((HomeUI)Client.clientGUI).innerpanel).tmp_panel);
+		menuResize();
+	}
+	
+	public void menuResize(){
+		int y_offset=48;
+		int x_offset=177;
+		int y0=((HomeUI)Client.clientGUI).innerpanel.getHeight();
+		int x=((HomeUI)Client.clientGUI).innerpanel.getWidth();
+		int y=((HomeUI)Client.clientGUI).innerpanel.getHeight();
+		int home_x=Client.clientGUI.getX();
+		int home_y=Client.clientGUI.getY();
+		int dif_width=(x_offset+x)-(((HomeUI)Client.clientGUI).getbtnX()+30);
+		//System.out.println("home_x="+home_x+",home_y="+home_y+",dif_width="+dif_width);
+		//System.out.println("y_offset="+y_offset+",x_offset="+x_offset+",y0="+y0+",x="+x+",y="+y);
+		((SchoolHomeAdminGUI)((HomeUI)Client.clientGUI).innerpanel).tmp_panel.setBounds(((SchoolHomeAdminGUI)((HomeUI)Client.clientGUI).innerpanel).tmp_panel.getX(),((SchoolHomeAdminGUI)((HomeUI)Client.clientGUI).innerpanel).tmp_panel.getY(), x, y);
+		//System.out.println(y>y0?y:y0);
+		((HomeUI)Client.clientGUI).innerpanel.setBounds(0,y_offset , x_offset+x, y_offset+(y<y0?y:y0));
+		((HomeUI)Client.clientGUI).contentPane.setBounds(0, 0, x_offset+x, y_offset+(y<y0?y:y0));
+		((HomeUI)Client.clientGUI).setBounds(home_x, home_y, x_offset+x, y_offset+(y<y0?y:y0));
+		//Setting Buttons
+		((HomeUI)Client.clientGUI).setNewBounds(dif_width-10);
+		((HomeUI)Client.clientGUI).repaint();
+	}
 }

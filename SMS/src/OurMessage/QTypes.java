@@ -16,6 +16,8 @@ public class QTypes {
 	public static int getReq=10;
 	public static int updateReq=11;
 	public static int readOnly=12;
+	public  static int getReqTeacher=13;
+	public static int updateReqTeacher=14;
 	
 	
 	

@@ -1,0 +1,25 @@
+package User;
+
+import javax.swing.JPanel;
+import javax.swing.JTable;
+
+import SchoolAdmin.SchoolHomeAdminGUI;
+import chat.Client;
+
+public class GetInfo extends JPanel{
+	public  JTable info = new JTable();
+
+	public GetInfo() {
+		setLayout(null);
+		info.setBounds(70, 11, 320, 278);
+		info.setCellSelectionEnabled(false);
+		add(info);
+	}
+	
+	public void ChangeJPanel(JPanel panel){
+		((HomeUI)Client.clientGUI).innerpanel.remove(((SchoolHomeAdminGUI)((HomeUI)Client.clientGUI).innerpanel).tmp_panel);
+		((SchoolHomeAdminGUI)((HomeUI)Client.clientGUI).innerpanel).tmp_panel=panel;
+		((HomeUI)Client.clientGUI).innerpanel.add(((SchoolHomeAdminGUI)((HomeUI)Client.clientGUI).innerpanel).tmp_panel);
+		menuResize();
+	}
+}

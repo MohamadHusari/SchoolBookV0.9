@@ -90,6 +90,7 @@ public class LoginUI extends JFrame {
 		lblerr.setForeground(Color.green);
 		setstatus("Your Account has Been successfully login\nRedirect in 1 sec...");
 		DateFormat dateformat = new SimpleDateFormat ("yyyy-MM-dd HH:mm:ss.ms");
+		DateFormat dateformat1 = new SimpleDateFormat ("yyyy-MM-dd HH:mm:ss");
 		Client.client.handleMessageFromClientUI(new Message ("SELECT id FROM semster WHERE \"" +dateformat.format(mydate) + "\" between start_date and end_date", QTypes.GetOpenedSem ));
 		ActionListener task = new ActionListener() {
 	        public void actionPerformed(ActionEvent e) {
@@ -131,6 +132,8 @@ public class LoginUI extends JFrame {
 				}
 	        	
 	        	((HomeUI)Client.clientGUI).resizeHome();
+	        	String Query = "INSERT INTO login_history (userid,date) VALUES ('"+Client.user.getID() +"' , '"+dateformat1.format(mydate)+"');";
+	        	Client.client.handleMessageFromClientUI(new Message (Query, QTypes.insert));
 	        }
 	        };
 				

@@ -1,0 +1,20 @@
+package User;
+
+import javax.swing.JPanel;
+import javax.swing.JTable;
+
+public class GetInfo extends JPanel{
+	public  JTable info = new JTable();
+	public GetInfo() {
+		setLayout(null);
+		info.setBounds(70, 11, 320, 278);
+		info.setCellSelectionEnabled(false);
+		add(info);
+		
+		
+		
+		
+		
+		
+	}
+}
