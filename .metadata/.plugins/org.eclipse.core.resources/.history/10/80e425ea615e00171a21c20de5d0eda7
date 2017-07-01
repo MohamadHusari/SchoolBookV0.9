@@ -1,0 +1,36 @@
+package SchoolAdmin;
+
+import javax.swing.JPanel;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class ReportHisto extends JPanel {
+
+	private final JButton Different_Classes = new JButton("Different Classes");
+	
+	public int StudentCount;
+	
+	
+	
+	public ReportHisto() {
+		setLayout(null);
+		Different_Classes.setBounds(180, 5, 89, 23);
+		
+		add(Different_Classes);
+		Different_Classes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				
+				
+			}
+		});
+		Different_Classes.setBounds(129, 159, 156, 23);
+		
+		add(Different_Classes);
+		
+		
+		
+		
+	} 
+}

@@ -18,7 +18,7 @@ public class QTypes {
 	public static int readOnly=12;
 	public  static int getReqTeacher=13;
 	public static int updateReqTeacher=14;
-	
+	public static int getgrades=15;
 	
 	
 	public static int secretaryStudents = 100;

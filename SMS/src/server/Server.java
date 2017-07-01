@@ -270,7 +270,20 @@ public class Server extends AbstractServer {
 				}
 				  break;  	  
 				  
-				  
+			  case 15:
+				  rs=stmt.executeQuery(((Message)msg).GetQuery());
+				  HashMap<String,Integer> grades = new HashMap<String,Integer>();
+				  while(rs.next()){
+					  grades.put(rs.getString(0), rs.getInt(1));
+				  }
+				  try {
+						client.sendToClient(new Request(grades,QTypes.getgrades));
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+						serv.display("["+dtf.format(now)+"] Error Sending back to Client!");	
+					}
+				  break;
 				  
 				  
 				  

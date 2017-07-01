@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.lang.reflect.Array;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -207,6 +208,10 @@ public class Client extends AbstractClient {
 			((SchoolHomeAdminGUI)((HomeUI)Client.clientGUI).innerpanel).button_2.doClick();
 			break;
 			
+			
+		case 15:
+			((ReportHisto)((SchoolHomeAdminGUI)((HomeUI)Client.clientGUI).innerpanel).tmp_panel).fillArray((HashMap<String, Integer>) ((Request)msg).getRequest());
+			break;
 		case 101:
 			((SecretaryHomeUI)Client.userMenu).ChangeJPanel(new CreatingSemesterUI());
 			if(((Request)msg).getRequest() instanceof Boolean)
