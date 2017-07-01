@@ -120,6 +120,7 @@ public class TeacherHomeUI extends JPanel {
 		    		    				innerpanel.removeAll();
 		    		    				innerpanel = new TU_requestUI();
 		    		    				contentPane.add(innerpanel);
+		    		    				Client.client.handleMessageFromClientUI(new Message("SELECT * FROM tu_req WHERE sem_id="+Client.client.opnedsem,QTypes.tu_request));
 		    		    				//Client.client.handleMessageFromClientUI(new Message("SELECT course_id, course_name FROM courses",QTypes.GetAllCoursesids));
 		    		    				resizeteacherhome();
 		    		    				//contentPane.revalidate();
@@ -149,6 +150,7 @@ public class TeacherHomeUI extends JPanel {
 		    		    				innerpanel.removeAll();
 		    		    				innerpanel = new TeacherPreCourses();
 		    		    				contentPane.add(innerpanel);
+		    		    				
 		    		    				//Client.client.handleMessageFromClientUI(new Message("SELECT * FROM courses",QTypes.ShowinTXTallCourses));
 		    		    				//Client.client.handleMessageFromClientUI(new Message("SELECT course_id, course_name FROM courses",QTypes.GetAllCoursesids));
 		    		    				resizeteacherhome();
@@ -186,6 +188,45 @@ public class TeacherHomeUI extends JPanel {
 		    		    				//contentPane.repaint();
 		    		    				//lblNewLabel.setText(tp.getLastPathComponent().toString());
 		    		    			}
+		    		    			if(s.equals("Upload Assigment"))
+		    		    			{
+		    		    				savemenu = new String(s);
+		    		    				pressed = true;
+		    		    				contentPane.remove(innerpanel);
+		    		    				innerpanel.removeAll();
+		    		    				innerpanel = new TeacherUplaodAss();
+		    		    				contentPane.add(innerpanel);
+		    		    				Client.client.handleMessageFromClientUI(new Message("SELECT * FROM class_schedule WHERE teacher_id="+Client.client.user.getID()+" AND sem_id="+ Client.client.opnedsem,QTypes.TeacherUploadAss));
+		    		    				//Client.client.handleMessageFromClientUI(new Message("SELECT course_id, course_name FROM courses",QTypes.GetAllCoursesids));
+		    		    				resizeteacherhome();
+		    		    			
+		    		    			}
+		    		    			if(s.equals("Upload Materials"))
+		    		    			{
+		    		    				savemenu = new String(s);
+		    		    				pressed = true;
+		    		    				contentPane.remove(innerpanel);
+		    		    				innerpanel.removeAll();
+		    		    				innerpanel = new TeacherUploadMat();
+		    		    				contentPane.add(innerpanel);
+		    		    				Client.client.handleMessageFromClientUI(new Message("SELECT * FROM class_schedule WHERE teacher_id="+Client.client.user.getID()+" AND sem_id="+ Client.client.opnedsem,QTypes.TeacherUploadMat));
+		    		    				//Client.client.handleMessageFromClientUI(new Message("SELECT course_id, course_name FROM courses",QTypes.GetAllCoursesids));
+		    		    				resizeteacherhome();
+		    		    			
+		    		    			}
+		    		    			if(s.equals("Estimating File"))
+		    		    			{
+		    		    				savemenu = new String(s);
+		    		    				pressed = true;
+		    		    				contentPane.remove(innerpanel);
+		    		    				innerpanel.removeAll();
+		    		    				innerpanel = new TeacherEstimatingFile();
+		    		    				contentPane.add(innerpanel);
+		    		    				//Client.client.handleMessageFromClientUI(new Message("SELECT * FROM class_schedule WHERE teacher_id="+Client.client.user.getID()+" AND sem_id="+ Client.client.opnedsem,QTypes.TeacherUploadMat));
+		    		    				//Client.client.handleMessageFromClientUI(new Message("SELECT course_id, course_name FROM courses",QTypes.GetAllCoursesids));
+		    		    				resizeteacherhome();
+		    		    			
+		    		    			}
 		    		    		}
 		    		    	}
 		    		    }
@@ -197,15 +238,9 @@ public class TeacherHomeUI extends JPanel {
 	public void resizeteacherhome(){
 		int mypanelX = 0;
 		int mypanelY = 0;
-		if ( innerpanel.getWidth() >= contentPane.getWidth())
-			mypanelX = innerpanel.getWidth();
-		else 
-			mypanelX = contentPane.getWidth();
-		if(innerpanel.getHeight() >= contentPane.getHeight() )
-			mypanelY = innerpanel.getHeight();
-		else
-			mypanelY = contentPane.getHeight();
 		
+		mypanelX = innerpanel.getWidth();
+		mypanelY = innerpanel.getHeight();
 		//System.out.print(mypanelY +"  se\n");
 			//myorgpanel = 172 + mypanelY;
 		contentPane.setBounds(172, 0, mypanelX, mypanelY);

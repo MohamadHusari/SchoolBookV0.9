@@ -753,15 +753,107 @@ public class Server extends AbstractServer {
 				  break;
 				  
 				  
+			  case 704:
+				  rs=stmt.executeQuery(((Message)msg).GetQuery());
+				  TableModel tu=DbUtils.resultSetToTableModel(rs);
+					  try {
+							client.sendToClient(new Request(tu,QTypes.tu_request));
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+							serv.display("["+dtf.format(now)+"] Error Sending back to Client!");	
+						}
+				  break;
 				  
 				  
 				  
 				  
+			  case 705:
+				  rs = stmt.executeQuery(((Message) msg).GetQuery());
+				  ArrayList<String> Ucou=new ArrayList<String>();
+				  ArrayList<Course> Uallcourses11=new ArrayList<Course>();
+				  ArrayList<String> Uprec11=new ArrayList<String>();
+				  Course Ucourse11;
+				  String Uprecc11 [] =null;
+				  if(rs.next())
+				  {
+					  do { // Use 'do...while' to process the first row, while continuing to process remaining rows
+					    	Ucou.add(rs.getString(2));
+					    } while (rs.next());
+					  for (int i =0;i<Ucou.size();i++)
+					  {
+						  rs = stmt.executeQuery("SELECT * FROM courses WHERE course_id="+Ucou.get(i));
+						  if(rs.next()) { // Checks for any results and moves cursor to first row,
+							  do { // Use 'do...while' to process the first row, while continuing to process remaining rows
+								  Ucourse11 = new Course (rs.getString(1), rs.getString(2), rs.getString(3), rs.getFloat(4), null);
+								  Uallcourses11.add(Ucourse11);
+							  } while (rs.next());
+						  }
 				  
+						 
+					  }
+					  Request req705=new Request(Uallcourses11,QTypes.TeacherUploadAss);
+					    try{
+							  client.sendToClient(req705);
+						  }catch(IOException ex){
+							 //Do Somthing
+							  serv.display("["+dtf.format(now)+"] Error Sending back The Courses details statment!");
+						  }
+				  }
+				  else 
+				  {
+					  Request req705=new Request(false,QTypes.showCoursesT);
+					  try{
+						  client.sendToClient(req705);
+					  }catch(IOException ex){
+						 //Do Somthing
+						  serv.display("["+dtf.format(now)+"] Error Sending back false statment!");
+					  }
+				  }
+				  break;
+			  case 706:
+				  rs = stmt.executeQuery(((Message) msg).GetQuery());
+				  ArrayList<String> MUcou=new ArrayList<String>();
+				  ArrayList<Course> MUallcourses11=new ArrayList<Course>();
+				  ArrayList<String> MUprec11=new ArrayList<String>();
+				  Course MUcourse11;
+				  String MUprecc11 [] =null;
+				  if(rs.next())
+				  {
+					  do { // Use 'do...while' to process the first row, while continuing to process remaining rows
+					    	MUcou.add(rs.getString(2));
+					    } while (rs.next());
+					  for (int i =0;i<MUcou.size();i++)
+					  {
+						  rs = stmt.executeQuery("SELECT * FROM courses WHERE course_id="+MUcou.get(i));
+						  if(rs.next()) { // Checks for any results and moves cursor to first row,
+							  do { // Use 'do...while' to process the first row, while continuing to process remaining rows
+								  MUcourse11 = new Course (rs.getString(1), rs.getString(2), rs.getString(3), rs.getFloat(4), null);
+								  MUallcourses11.add(MUcourse11);
+							  } while (rs.next());
+						  }
 				  
-				  
-				  
-				  
+						 
+					  }
+					  Request req706=new Request(MUallcourses11,QTypes.TeacherUploadMat);
+					    try{
+							  client.sendToClient(req706);
+						  }catch(IOException ex){
+							 //Do Somthing
+							  serv.display("["+dtf.format(now)+"] Error Sending back The Courses details statment!");
+						  }
+				  }
+				  else 
+				  {
+					  Request req706=new Request(false,QTypes.TeacherUploadMat);
+					  try{
+						  client.sendToClient(req706);
+					  }catch(IOException ex){
+						 //Do Somthing
+						  serv.display("["+dtf.format(now)+"] Error Sending back false statment!");
+					  }
+				  }
+				  break;
 				  
 				  //teacher
 				  
