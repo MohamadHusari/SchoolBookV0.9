@@ -29,6 +29,7 @@ import sysAdmin.*;
 import User.LoginUI;
 import Secretary.*;
 import Student.*;
+import SchoolAdmin.*;
 //import common.Sys;
 /**
  * Client class represents as the user who sends the message to the server and
@@ -149,6 +150,36 @@ public class Client extends AbstractClient {
 			}
 			
 			break;
+			
+		case 8:
+			
+			((SchoolHomeAdminGUI)((HomeUI)Client.clientGUI).innerpanel).button.doClick();
+//			((RequestPanel)((SchoolHomeAdminGUI)((HomeUI)Client.clientGUI).innerpanel).tmp_panel).lblRequestDone.setVisible(true);
+			((RequestPanel)((SchoolHomeAdminGUI)((HomeUI)Client.clientGUI).innerpanel).tmp_panel).lblRequestDone.setVisible(true);
+			break;
+		case 9:
+			((SchoolHomeAdminGUI)((HomeUI)Client.clientGUI).innerpanel).ChangeJPanel(new RequestPanel());	
+			((RequestPanel)((SchoolHomeAdminGUI)((HomeUI)Client.clientGUI).innerpanel).tmp_panel).table.setModel((TableModel)(((Request)msg).getRequest()));
+			break;
+
+			
+			
+		case 10:
+			((SchoolHomeAdminGUI)((HomeUI)Client.clientGUI).innerpanel).button.doClick();
+//			((RequestPanel)((SchoolHomeAdminGUI)((HomeUI)Client.clientGUI).innerpanel).tmp_panel).lblRequestDone.setVisible(true);
+			((RequestPanel)((SchoolHomeAdminGUI)((HomeUI)Client.clientGUI).innerpanel).tmp_panel).lblRequestDone.setVisible(true);
+			break;
+			
+		case 11:
+			((RequestPanel)((SchoolHomeAdminGUI)((HomeUI)Client.clientGUI).innerpanel).tmp_panel).table.setModel((TableModel)(((Request)msg).getRequest()));
+			break;
+			
+		case 12:
+			
+		//((ReadOnly)((SchoolHomeAdminGUI)((HomeUI)Client.clientGUI).innerpanel).Read_panel).Read_table.setModel((TableModel)(((Request)msg).getRequest()));
+		
+			break;
+			
 		case 101:
 			((SecretaryHomeUI)Client.userMenu).ChangeJPanel(new CreatingSemesterUI());
 			if(((Request)msg).getRequest() instanceof Boolean)

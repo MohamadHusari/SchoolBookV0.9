@@ -1,0 +1,37 @@
+package SchoolAdmin;
+
+import javax.swing.JFrame;
+import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
+import javax.swing.table.DefaultTableModel;
+
+public class Data extends JFrame{
+	public final JTable Read_table = new JTable();
+	public Data() {
+		
+		Read_table = new JTable(){  
+			
+		       
+			Object [] colName={};
+			Object [][] rows={};
+		       public boolean isCellEditable(int row,int column){  
+		           Object o = getValueAt(row,column);  
+		           if(o!=null) return false;  
+		           return true;  
+		         }  
+		       };
+		       
+			getContentPane().setLayout(null);
+			Read_table.setBounds(81, 48, 309, 170);
+			DefaultTableModel model = new DefaultTableModel(rows,colName);
+			Read_table.setModel(model);
+			Read_table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+			Read_table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+			getContentPane().add(Read_table);
+			
+			
+	}
+	
+	
+	
+}

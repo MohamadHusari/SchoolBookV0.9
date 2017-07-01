@@ -1,0 +1,104 @@
+package SchoolAdmin;
+
+import javax.swing.JPanel;
+
+import OurMessage.Message;
+import OurMessage.QTypes;
+import chat.Client;
+
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class ReadOnly extends JPanel  {
+	
+	public JPanel Read_panel;
+	
+	private final JButton btnNewButton = new JButton("Student in Course");
+	private final JButton btnTeacherInCourse = new JButton("Teacher in Course");
+	private final JButton btnNewButton_1 = new JButton("Courses and Teaching Units");
+	private final JButton btnNewButton_2 = new JButton("Pre Courses");
+	private final JButton btnShowRequests = new JButton("Show Requests");
+	
+	
+	public ReadOnly() {
+		setLayout(null);
+		
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				String Q="SELECT * FROM class_students ;";
+				Message Msg= new Message(Q,QTypes.readOnly);
+				Client.client.handleMessageFromClientUI(Msg);
+				Data Window=new Data();
+				
+			}
+		});
+		btnNewButton.setBounds(233, 80, 185, 23);
+				add(btnNewButton);
+				
+				
+				
+		btnTeacherInCourse.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				String Q="SELECT * FROM class_schedule ;";
+				Message Msg= new Message(Q,QTypes.readOnly);
+				Client.client.handleMessageFromClientUI(Msg);
+				Data Window=new Data();
+
+			}
+		});
+		btnTeacherInCourse.setBounds(233, 46, 185, 23);
+		
+		add(btnTeacherInCourse);
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String Q="SELECT * FROM courses ;";
+				Message Msg= new Message(Q,QTypes.readOnly);
+				Client.client.handleMessageFromClientUI(Msg);
+				Data Window=new Data();
+
+				
+			}
+		});
+		btnNewButton_1.setBounds(233, 123, 178, 23);
+		
+		add(btnNewButton_1);
+		
+		
+		
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String Q="SELECT * FROM pre_courses ;";
+				Message Msg= new Message(Q,QTypes.readOnly);
+				Client.client.handleMessageFromClientUI(Msg);
+				Data Window=new Data();
+				
+			
+			}
+		});
+		
+		
+		btnNewButton_2.setBounds(232, 167, 179, 23);
+		
+		add(btnNewButton_2);
+		btnShowRequests.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String Q="SELECT * FROM requests ;";
+				Message Msg= new Message(Q,QTypes.readOnly);
+				Client.client.handleMessageFromClientUI(Msg);
+				Data Window=new Data();
+			}
+		});
+		btnShowRequests.setBounds(233, 201, 178, 23);
+		
+		add(btnShowRequests);
+		
+		
+		
+		
+		
+		
+	}
+}

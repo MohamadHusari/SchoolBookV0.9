@@ -1,0 +1,9 @@
+package SchoolAdmin;
+
+public class ReadOnly extends JPanel  {
+	
+	
+	
+	
+
+}

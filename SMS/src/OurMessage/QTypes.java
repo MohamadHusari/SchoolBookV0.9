@@ -11,6 +11,14 @@ public class QTypes {
 	public static int getuser=5;//Login Button
 	public static int updateonX=6;//HomeUI Clicking on X then Yes
 	public static int GetOpenedSem=7;
+	public static int updateBlockRequest=8;
+	public static int getblockrequests=9;//RequestPanel Block Request School Admin
+	public static int getReq=10;
+	public static int updateReq=11;
+	public static int readOnly=12;
+	
+	
+	
 	public static int secretaryStudents = 100;
 	public static int checksemester=101;//check semester duration
 	public static int addnewsemester=102;//adding new semester

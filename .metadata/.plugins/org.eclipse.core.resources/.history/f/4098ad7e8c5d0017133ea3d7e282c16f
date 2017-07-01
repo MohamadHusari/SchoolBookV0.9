@@ -1,0 +1,44 @@
+package SchoolAdmin;
+
+import javax.swing.JPanel;
+
+import OurMessage.Message;
+
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class ReadOnly extends JPanel  {
+	private final JButton btnNewButton = new JButton("Student in Course");
+	private final JButton btnTeacherInCourse = new JButton("Teacher in Course");
+	public ReadOnly() {
+		setLayout(null);
+		
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				
+			}
+		});
+		btnNewButton.setBounds(273, 98, 145, 23);
+		
+		add(btnNewButton);
+		btnTeacherInCourse.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				String Q="SELECT * FROM class_schedule ;";
+				Message Msg= new Message(Q,QTypes.readOnly);
+				
+				
+				
+				
+				
+			}
+		});
+		btnTeacherInCourse.setBounds(273, 59, 145, 23);
+		
+		add(btnTeacherInCourse);
+	}
+}

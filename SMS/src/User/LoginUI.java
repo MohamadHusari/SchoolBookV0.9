@@ -9,6 +9,7 @@ import javax.swing.border.EmptyBorder;
 
 import OurMessage.Message;
 import OurMessage.QTypes;
+import SchoolAdmin.SchoolHomeAdminGUI;
 import Secretary.HomeSelectUI;
 import Secretary.SecretaryHomeUI;
 import chat.Client;
@@ -112,7 +113,8 @@ public class LoginUI extends JFrame {
 					//System.out.print(Client.client.opnedsem);
 					break;
 				case 4://System.out.println("Welcome Back School Admin");
-					
+					((HomeUI)Client.clientGUI).innerpanel=new SchoolHomeAdminGUI();
+					((HomeUI)Client.clientGUI).contentPane.add(((HomeUI)Client.clientGUI).innerpanel);
 					break;
 				case 5://System.out.println("Welcome Back Secretary");
 					Client.userMenu=new SecretaryHomeUI();
@@ -121,7 +123,7 @@ public class LoginUI extends JFrame {
 		            ((SecretaryHomeUI)Client.userMenu).ChangeJPanel(new HomeSelectUI());
 					break;
 				case 6://System.out.println("Welcome Back Parent");
-
+					
 					break;
 				case 7://System.out.println("Welcome Back Guest");
 

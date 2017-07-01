@@ -1,0 +1,25 @@
+package SchoolAdmin;
+
+import javax.swing.JFrame;
+import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
+import javax.swing.table.DefaultTableModel;
+
+public class Data extends JFrame{
+	private final JTable table = new JTable();
+	public Data() {
+		
+			getContentPane().setLayout(null);
+			table.setBounds(81, 48, 309, 170);
+			DefaultTableModel model = new DefaultTableModel(rows,colName);
+			table.setModel(model);
+			table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+			table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+			getContentPane().add(table);
+			
+			
+	}
+	
+	
+	
+}

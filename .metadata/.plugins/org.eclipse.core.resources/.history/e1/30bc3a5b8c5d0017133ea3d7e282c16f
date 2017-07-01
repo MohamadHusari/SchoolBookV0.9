@@ -1,0 +1,11 @@
+package SchoolAdmin;
+
+import javax.swing.JPanel;
+
+public class ReadOnly extends JPanel  {
+	
+	
+	
+	
+
+}

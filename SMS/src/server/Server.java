@@ -169,6 +169,71 @@ public class Server extends AbstractServer {
 				  
 				  break;
 				  
+				  
+			  case 8:
+				  stmt.executeUpdate(((Message)msg).GetQuery());
+				  Request req1=new Request(true,QTypes.updateBlockRequest);
+				  try {
+					client.sendToClient(req1);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				  break;
+				  
+			  case 9:
+				  rs=stmt.executeQuery(((Message)msg).GetQuery());
+				  TableModel req=DbUtils.resultSetToTableModel(rs);
+				  try {
+						client.sendToClient(new Request(req,QTypes.getblockrequests));
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+						serv.display("["+dtf.format(now)+"] Error Sending back to Client!");	
+					}
+				  break;
+				  
+			  case 10:
+				  rs=stmt.executeQuery(((Message)msg).GetQuery());
+				  TableModel req2=DbUtils.resultSetToTableModel(rs);
+				  try {
+						client.sendToClient(new Request(req2,QTypes.getReq));
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+						serv.display("["+dtf.format(now)+"] Error Sending back to Client!");	
+					}
+				  break;
+				  
+				  
+			  case 11:
+				  stmt.executeUpdate(((Message)msg).GetQuery());
+				  Request req3=new Request(true,QTypes.updateReq);
+				  try {
+					client.sendToClient(req3);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				  break;  
+				  
+			  case 12:
+				  stmt.executeUpdate(((Message)msg).GetQuery());
+				  Request req4=new Request(true,QTypes.readOnly);
+				  try {
+					client.sendToClient(req4);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				  
+			break;
+				  
+				  
+				  
+				  
+				  
+				  
 				  // Student Blocking Parent .
 			  case 300:
 				  rs = stmt.executeQuery(((Message) msg).GetQuery());
