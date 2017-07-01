@@ -18,6 +18,7 @@ import chat.Client;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.awt.event.ActionEvent;
 
 import javax.swing.BorderFactory;
@@ -345,14 +346,21 @@ public class ShowAllCoursesFieldsUI extends JPanel {
 				((ShowAllCoursesFieldsUI)((sysAdminHomeUI)((HomeUI)Client.client.clientGUI).innerpanel).innerpanel).removeAll();
 				((sysAdminHomeUI)((HomeUI)Client.client.clientGUI).innerpanel).innerpanel = new EditCourseNextUI();
 				((sysAdminHomeUI)((HomeUI)Client.client.clientGUI).innerpanel).contentPane.add(((sysAdminHomeUI)((HomeUI)Client.client.clientGUI).innerpanel).innerpanel);
-				//((EditCourseUI)((sysAdminHomeUI)((HomeUI)Client.client.clientGUI).innerpanel).innerpanel).StartmyUI(allcourses);
-				//Client.client.handleMessageFromClientUI(new Message("SELECT course_id, course_name FROM courses",QTypes.GetAllCoursesids));
+				((sysAdminHomeUI)((HomeUI)Client.client.clientGUI).innerpanel).mytree.tree.setSelectionRow(3);
+				((sysAdminHomeUI)((HomeUI)Client.client.clientGUI).innerpanel).savemenu = new String("Edit Course");
+				((EditCourseNextUI)((sysAdminHomeUI)((HomeUI)Client.client.clientGUI).innerpanel).innerpanel).coursesedit.clear();
+				((EditCourseNextUI)((sysAdminHomeUI)((HomeUI)Client.client.clientGUI).innerpanel).innerpanel).index = 0;
+				Client.client.handleMessageFromClientUI(new Message("SELECT * FROM teaching_unit",QTypes.GetTeachunits2));
+				//Client.client.handleMessageFromClientUI(new Message("SELECT course_id, course_name FROM courses",QTypes.GetAllCoursestoButinChechboxlist));
+				//String[] prec = Arrays.copyOf(list1.getCheckBoxListSelectedValues(), list1.getCheckBoxListSelectedValues().length, String[].class);
+				((EditCourseNextUI)((sysAdminHomeUI)((HomeUI)Client.client.clientGUI).innerpanel).innerpanel).size = 1;
+				Client.client.handleMessageFromClientUI(new Message("SELECT * FROM courses WHERE course_id="+txtcourseid.getText(),QTypes.GetspaceficcourseDetails));
 				((sysAdminHomeUI)((HomeUI)Client.client.clientGUI).innerpanel).resizesysAdminHome();
 				
 			}
 		});
 		btnedit.setVisible(false);
-		btnedit.setIcon(new ImageIcon("D:\\SMS\\SMS\\img\\sysAdmin\\button new.png"));
+		btnedit.setIcon(new ImageIcon("img\\sysAdmin\\button new.png"));
 		btnedit.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
 		btnedit.setFocusable(false);
 		btnedit.setBorder(BorderFactory.createEmptyBorder());

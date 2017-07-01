@@ -315,7 +315,7 @@ public class Client extends AbstractClient {
 			{
 				
 				((AddCourseUI)((sysAdminHomeUI)((HomeUI)clientGUI).innerpanel).innerpanel).list1.addCheckBoxListSelectedValue(((Request)msg).getRequest(), false);
-				((AddCourseUI)((sysAdminHomeUI)((HomeUI)clientGUI).innerpanel).innerpanel).list1.updateUI();
+				//((AddCourseUI)((sysAdminHomeUI)((HomeUI)clientGUI).innerpanel).innerpanel).list1.updateUI();
 					
 			}
 			break;
@@ -388,6 +388,7 @@ public class Client extends AbstractClient {
 			{
 				if(((ArrayList<?>)((Request)msg).getRequest()).get(0) instanceof String)
 				{
+					((EditCourseUI)((sysAdminHomeUI)((HomeUI)clientGUI).innerpanel).innerpanel).btnnext.setVisible(true);
 					ArrayList<String> m = ((ArrayList<String>)((Request)msg).getRequest());
 					DefaultListModel lmdlEjemplo=new DefaultListModel();
 					for (int i = 0; i < m.size(); i++)
@@ -414,6 +415,139 @@ public class Client extends AbstractClient {
 			}
 			break;
 			
+			
+		case 209:
+			if(((Request)msg).getRequest() instanceof Boolean)
+			{
+				if(!(Boolean)(((Request)msg).getRequest()))
+					System.out.print("medo");
+			}
+			if(((Request)msg).getRequest() instanceof Course)
+			{
+
+					((EditCourseNextUI)((sysAdminHomeUI)((HomeUI)clientGUI).innerpanel).innerpanel).coursesedit.add( (Course)(((Request)msg).getRequest()) ) ;
+					if (   ((EditCourseNextUI)((sysAdminHomeUI)((HomeUI)clientGUI).innerpanel).innerpanel).coursesedit.size() == ((EditCourseNextUI)((sysAdminHomeUI)((HomeUI)clientGUI).innerpanel).innerpanel).size  )
+					{
+						//((ShowAllCoursesFieldsUI)((sysAdminHomeUI)((HomeUI)clientGUI).innerpanel).innerpanel).index = 0;
+						((EditCourseNextUI)((sysAdminHomeUI)((HomeUI)clientGUI).innerpanel).innerpanel).StartmyUI();
+					}
+			}
+			
+			break;
+			
+			
+		case 210:
+			if(((Request)msg).getRequest() instanceof Boolean)
+			{
+				if(!(Boolean)(((Request)msg).getRequest())){
+					//DB is Empty
+					System.out.print("empty");
+				}
+			}
+			if(((Request)msg).getRequest() instanceof ArrayList<?>)
+			{
+				if(((ArrayList<?>)((Request)msg).getRequest()).get(0) instanceof TeachUnit)
+				{
+					ArrayList<TeachUnit> m = ((ArrayList<TeachUnit>)((Request)msg).getRequest());
+					((EditCourseNextUI)((sysAdminHomeUI)((HomeUI)clientGUI).innerpanel).innerpanel).TU = ((ArrayList<TeachUnit>)((Request)msg).getRequest());
+					for (int i = 0; i < m.size(); i++) {
+						((EditCourseNextUI)((sysAdminHomeUI)((HomeUI)clientGUI).innerpanel).innerpanel).teacunit_choice.add(m.get(i).getTeachUnit_Name() + " '" + m.get(i).getTeachUnit_ID() +"'");
+					}
+					//((EditCourseNextUI)((sysAdminHomeUI)((HomeUI)clientGUI).innerpanel).innerpanel).txtfirstid.setText(m.get(0).getTeachUnit_ID());
+				}
+			}
+			break;
+			
+			
+		case 211:
+			if(((Request)msg).getRequest() instanceof Boolean)
+			{
+				if(!(Boolean)(((Request)msg).getRequest())){
+					//DB is Empty
+					System.out.print("empty");
+				}
+			}
+			if(((Request)msg).getRequest() instanceof ArrayList<?>)
+			{
+				if(((ArrayList<?>)((Request)msg).getRequest()).get(0) instanceof String)
+				{
+					ArrayList<String> m = ((ArrayList<String>)((Request)msg).getRequest());
+					DefaultListModel lmdlEjemplo=new DefaultListModel();
+					for (int i = 0; i < m.size(); i++)
+						lmdlEjemplo.addElement(m.get(i));
+					((EditCourseNextUI)((sysAdminHomeUI)((HomeUI)clientGUI).innerpanel).innerpanel).list1.setModel(lmdlEjemplo);
+					//((EditCourseNextUI)((sysAdminHomeUI)((HomeUI)clientGUI).innerpanel).innerpanel).list1.ref
+					//((EditCourseNextUI)((sysAdminHomeUI)((HomeUI)clientGUI).innerpanel).innerpanel).scrollPane.setViewportView(((EditCourseNextUI)((sysAdminHomeUI)((HomeUI)clientGUI).innerpanel).innerpanel).list1);
+				}
+			}
+			break;
+			
+			
+		case 212:
+			if(((Request)msg).getRequest() instanceof Boolean)
+			{
+				if(!(Boolean)(((Request)msg).getRequest())){
+					//DB is Empty
+					((EditCourseNextUI)((sysAdminHomeUI)((HomeUI)clientGUI).innerpanel).innerpanel).showerrdilog("The Course id is not available");
+				}
+			}
+			if(((Request)msg).getRequest() instanceof String)
+			{
+				
+				((EditCourseNextUI)((sysAdminHomeUI)((HomeUI)clientGUI).innerpanel).innerpanel).list1.addCheckBoxListSelectedValue(((Request)msg).getRequest(), false);
+				//((EditCourseNextUI)((sysAdminHomeUI)((HomeUI)clientGUI).innerpanel).innerpanel).list1.updateUI();
+					
+			}
+			break;
+			
+		case 213:
+			if(((Request)msg).getRequest() instanceof Boolean)
+			{
+				if(!(Boolean)(((Request)msg).getRequest()))
+					((EditCourseNextUI)((sysAdminHomeUI)((HomeUI)clientGUI).innerpanel).innerpanel).showerrdilog("The course id is already exists in DataBase !");
+				else
+				{
+					((EditCourseNextUI)((sysAdminHomeUI)((HomeUI)clientGUI).innerpanel).innerpanel).successadd("The Course has been edited Successfully");
+					((EditCourseNextUI)((sysAdminHomeUI)((HomeUI)clientGUI).innerpanel).innerpanel).Removeonefromcoursesedit();
+				}
+			}
+			break;
+			
+		/*case 214:
+			if(((Request)msg).getRequest() instanceof Boolean)
+			{
+				if(!(Boolean)(((Request)msg).getRequest())){
+					//DB is Empty
+					((EditCourseNextUI)((sysAdminHomeUI)((HomeUI)clientGUI).innerpanel).innerpanel).showerrdilog("The Course id is not available");
+				}
+				else
+				{
+					
+				}
+			}
+			break;
+			*/
+			
+			
+		case 215:
+			if(((Request)msg).getRequest() instanceof Boolean)
+			{
+				if(!(Boolean)(((Request)msg).getRequest())){
+					//DB is Empty
+					//System.out.print("empty");
+					((ShowTeachUnitUI)((sysAdminHomeUI)((HomeUI)clientGUI).innerpanel).innerpanel).lblstatus.setVisible(true);
+				}
+			}
+			if(((Request)msg).getRequest() instanceof ArrayList<?>)
+			{
+				if(((ArrayList<?>)((Request)msg).getRequest()).get(0) instanceof TeachUnit)
+				{
+					((ShowTeachUnitUI)((sysAdminHomeUI)((HomeUI)clientGUI).innerpanel).innerpanel).TU = ((ArrayList<TeachUnit>)((Request)msg).getRequest());
+					((ShowTeachUnitUI)((sysAdminHomeUI)((HomeUI)clientGUI).innerpanel).innerpanel).index = 0;
+					((ShowTeachUnitUI)((sysAdminHomeUI)((HomeUI)clientGUI).innerpanel).innerpanel).startmyUI();
+				}
+			}
+			break;
 			
 			/* Sys Admin */
 			/// teacher

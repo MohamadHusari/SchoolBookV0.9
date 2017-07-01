@@ -72,26 +72,19 @@ public class sysAdminMenuUI {
     DefaultMutableTreeNode set1 = new DefaultMutableTreeNode(
         new TestNode("Courses", Color.ORANGE, d64, false));
     set1.add(new DefaultMutableTreeNode(
-        new TestNode("Add New Course", Color.ORANGE, d32, true)));
+        new TestNode("Add New Course", Color.lightGray, d32, true)));
     set1.add(new DefaultMutableTreeNode(
         new TestNode("Show All Courses", Color.CYAN.darker(), d32, true)));
     set1.add(new DefaultMutableTreeNode(
         new TestNode("Edit Course", Color.GREEN, d32, true)));
+    set1.add(new DefaultMutableTreeNode(
+        new TestNode("Show Teach Units", Color.PINK, d32, true)));
     DefaultMutableTreeNode set2 = new DefaultMutableTreeNode(
-        new TestNode("SubCategory 2", Color.GREEN.darker().darker(), d64, false));
-    DefaultMutableTreeNode set3 = new DefaultMutableTreeNode(
-        new TestNode("SubSubCategory 5", Color.GREEN, d32, false));
-    set3.add(new DefaultMutableTreeNode(
-        new TestNode("SubSubSubCategory 1", Color.BLUE, d24, true)));
-    set3.add(new DefaultMutableTreeNode(
-        new TestNode("SubSubSubCategory 2", Color.GREEN, d24, true)));
-    set3.add(new DefaultMutableTreeNode(
-        new TestNode("SubSubSubCategory 3", Color.ORANGE.darker(), d24, true)));
+        new TestNode("Requests", Color.GREEN.darker().darker(), d64, false));
     set2.add(new DefaultMutableTreeNode(
-        new TestNode("SubSubCategory 4", Color.ORANGE.darker().darker(), d32, true)));
-    set2.add(set3);
-    set2.add(new DefaultMutableTreeNode(
-        new TestNode("SubSubCategory 6", Color.ORANGE, d32, true)));
+        new TestNode("Show Requests", Color.ORANGE.darker().darker(), d32, true)));
+    /*set2.add(new DefaultMutableTreeNode(
+        new TestNode("SubSubCategory 6", Color.ORANGE, d32, true)));*/
     root.add(set1);
     root.add(set2);
     return new DefaultTreeModel(root);

@@ -166,7 +166,7 @@ public class ShowAllCoursesUI extends JPanel {
 		jideScrollPane.setBackground(Color.LIGHT_GRAY);
 		jideScrollPane.setHorizontalScrollBarPolicy(SimpleScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		jideScrollPane.setVerticalScrollBarPolicy(SimpleScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-		jideScrollPane.setBounds(12, 75, 576, 98);
+		jideScrollPane.setBounds(12, 75, 576, 300);
 		add(jideScrollPane);
 		jideScrollPane.setViewportView(table);
 		jideScrollPane.getViewport().setBackground(Color.white);

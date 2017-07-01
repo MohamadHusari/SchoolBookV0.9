@@ -3,10 +3,13 @@ package sysAdmin;
 import javax.swing.JPanel;
 import java.awt.SystemColor;
 import javax.swing.JPopupMenu;
+import javax.swing.JTree;
 import javax.swing.Painter;
 import javax.swing.UIDefaults;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
 
 import OurMessage.Message;
@@ -19,6 +22,7 @@ import java.awt.EventQueue;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
+import java.util.Enumeration;
 
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -58,7 +62,7 @@ public class sysAdminHomeUI extends JPanel {
 	
 	
 	public sysAdminHomeUI() {
-		setBackground(Color.GRAY);
+		setBackground(Color.WHITE);
 		setBounds(2, 59, 600, 350);
 		setLayout(null);
 		
@@ -142,6 +146,38 @@ public class sysAdminHomeUI extends JPanel {
 		    		    				//contentPane.repaint();
 		    		    				//lblNewLabel.setText(tp.getLastPathComponent().toString());
 		    		    			}
+		    		    			if(s.equals("Show Teach Units"))
+		    		    			{
+		    		    				savemenu = new String(s);
+		    		    				pressed = true;
+		    		    				contentPane.remove(innerpanel);
+		    		    				innerpanel.removeAll();
+		    		    				innerpanel = new ShowTeachUnitUI();
+		    		    				contentPane.add(innerpanel);
+		    		    				Client.client.handleMessageFromClientUI(new Message("SELECT * FROM teaching_unit",QTypes.GetTeachunitsUI));
+		    		    				//Client.client.handleMessageFromClientUI(new Message("SELECT course_id, course_name FROM courses",QTypes.GetAllCoursesids));
+		    		    				resizesysAdminHome();
+		    		    				//contentPane.revalidate();
+		    		    				//contentPane.repaint();
+		    		    				//lblNewLabel.setText(tp.getLastPathComponent().toString());
+		    		    			}
+		    		    			if(s.equals("Show Requests"))
+		    		    			{
+		    		    				savemenu = new String(s);
+		    		    				pressed = true;
+		    		    				contentPane.remove(innerpanel);
+		    		    				innerpanel.removeAll();
+		    		    				innerpanel = new ShowRequestsUI();
+		    		    				contentPane.add(innerpanel);
+		    		    				//Client.client.handleMessageFromClientUI(new Message("SELECT * FROM teaching_unit",QTypes.GetTeachunitsUI));
+		    		    				//Client.client.handleMessageFromClientUI(new Message("SELECT course_id, course_name FROM courses",QTypes.GetAllCoursesids));
+		    		    				resizesysAdminHome();
+		    		    				//contentPane.revalidate();
+		    		    				//contentPane.repaint();
+		    		    				//lblNewLabel.setText(tp.getLastPathComponent().toString());
+		    		    			}
+		    		    			
+		    		    			
 		    		    		}
 		    		    	}
 		    		    }
@@ -204,5 +240,27 @@ public class sysAdminHomeUI extends JPanel {
     Client.clientGUI.setVisible(true);
     */
 	}
+	  public void expandAll(JTree tree) {
+		    int row = 0;
+		    while (row < tree.getRowCount()) {
+		      tree.expandRow(row);
+		      row++;
+		      }
+	   }
+
+
+	  public void expandToLast(JTree tree) {
+		    // expand to the last leaf from the root
+		    DefaultMutableTreeNode  root;
+		    root = (DefaultMutableTreeNode) tree.getModel().getRoot();
+		    tree.scrollPathToVisible(new TreePath(root.getLastLeaf().getPath()));
+	   }
+	  public void collapseAll(JTree tree) {
+		    int row = tree.getRowCount() - 1;
+		    while (row >= 0) {
+		      tree.collapseRow(row);
+		      row--;
+		      }
+	   }
 	
 }

@@ -5,6 +5,7 @@ import com.jidesoft.swing.CheckBoxList;
 import Entities.Course;
 import OurMessage.Message;
 import OurMessage.QTypes;
+import User.HomeUI;
 import chat.Client;
 
 import java.awt.event.ActionEvent;
@@ -251,7 +252,7 @@ public class AddCourseUI extends JPanel {
 								i++;
 								Client.client.handleMessageFromClientUI(new Message("INSERT INTO pre_courses (course_id,pre_course)"
 										+ "VALUES ('" + course.getCourse_ID() +"', '"+ x +"' )",QTypes.AddnewPreCourse));
-						}
+							}
 						course.setPreCourses(prec);
 						}
 				}
@@ -306,6 +307,31 @@ public class AddCourseUI extends JPanel {
 		txtlearnhours2.setBackground(Color.LIGHT_GRAY);
 		txtlearnhours2.setBounds(246, 121, 56, 20);
 		add(txtlearnhours2);
+		
+		JButton btnclose = new JButton("");
+		btnclose.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int reply = JOptionPane.showConfirmDialog(null, "Are You Sure you wanna colse this Panel", "Verify your option", JOptionPane.YES_NO_OPTION);
+		        if (reply == JOptionPane.YES_OPTION) {
+		        	((sysAdminHomeUI)((HomeUI)Client.client.clientGUI).innerpanel).contentPane.remove(((sysAdminHomeUI)((HomeUI)Client.client.clientGUI).innerpanel).innerpanel);
+		        	((AddCourseUI)((sysAdminHomeUI)((HomeUI)Client.client.clientGUI).innerpanel).innerpanel).removeAll();
+		        	((sysAdminHomeUI)((HomeUI)Client.client.clientGUI).innerpanel).innerpanel = new WelcomeUI();
+					((sysAdminHomeUI)((HomeUI)Client.client.clientGUI).innerpanel).contentPane.add(((sysAdminHomeUI)((HomeUI)Client.client.clientGUI).innerpanel).innerpanel);
+					((sysAdminHomeUI)((HomeUI)Client.client.clientGUI).innerpanel).collapseAll(((sysAdminHomeUI)((HomeUI)Client.client.clientGUI).innerpanel).mytree.tree);
+		        	((sysAdminHomeUI)((HomeUI)Client.client.clientGUI).innerpanel).savemenu="";
+		        	((sysAdminHomeUI)((HomeUI)Client.client.clientGUI).innerpanel).pressed=false;
+					//Client.client.handleMessageFromClientUI(new Message("SELECT course_id, course_name FROM courses",QTypes.GetAllCoursesids));
+					((sysAdminHomeUI)((HomeUI)Client.client.clientGUI).innerpanel).resizesysAdminHome();
+		        }
+			}
+		});
+		btnclose.setIcon(new ImageIcon("img\\sysAdmin\\close-icon-31.png"));
+		btnclose.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
+		btnclose.setFocusable(false);
+		btnclose.setBorder(BorderFactory.createEmptyBorder());
+		btnclose.setBackground(Color.WHITE);
+		btnclose.setBounds(411, 0, 87, 69);
+		add(btnclose);
 		txtlearnhours2.addKeyListener(new KeyAdapter() {
 		      public void keyReleased(KeyEvent evt) {
 		    	  char char_input = evt.getKeyChar();

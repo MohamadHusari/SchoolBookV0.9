@@ -12,7 +12,7 @@ import OurMessage.QTypes;
 import Secretary.HomeSelectUI;
 import Secretary.SecretaryHomeUI;
 import chat.Client;
-import sysAdmin.sysAdminHomeUI;
+import sysAdmin.*;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -109,6 +109,9 @@ public class LoginUI extends JFrame {
 				case 3://System.out.println("Welcome Back System Admin");
 					((HomeUI)Client.clientGUI).innerpanel=new sysAdminHomeUI();
 					((HomeUI)Client.clientGUI).contentPane.add(((HomeUI)Client.clientGUI).innerpanel);
+					((sysAdminHomeUI)((HomeUI)Client.client.clientGUI).innerpanel).innerpanel = new WelcomeUI();
+					((sysAdminHomeUI)((HomeUI)Client.client.clientGUI).innerpanel).contentPane.add(((sysAdminHomeUI)((HomeUI)Client.client.clientGUI).innerpanel).innerpanel);
+					((sysAdminHomeUI)((HomeUI)Client.client.clientGUI).innerpanel).resizesysAdminHome();
 					//System.out.print(Client.client.opnedsem);
 					break;
 				case 4://System.out.println("Welcome Back School Admin");

@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Arrays;
 
 import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
@@ -22,6 +23,7 @@ import com.jidesoft.swing.CheckBoxList;
 
 import OurMessage.Message;
 import OurMessage.QTypes;
+import User.HomeUI;
 import chat.Client;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -35,6 +37,7 @@ public class EditCourseUI extends JPanel {
 	public JButton btnnext;
 	public JLabel lblstatus;
 	private JLabel lblselectc;
+	private JButton btnclose;
 	
 	/**
 	 * Create the panel.
@@ -46,7 +49,7 @@ public class EditCourseUI extends JPanel {
 		setLayout(null);
 		
 		lblselectc = new JLabel("");
-        lblselectc.setIcon(new ImageIcon("D:\\SMS\\SMS\\img\\sysAdmin\\select_c4.png"));
+        lblselectc.setIcon(new ImageIcon("img\\sysAdmin\\select_c4.png"));
         lblselectc.setBounds(28, 12, 205, 37);
         add(lblselectc);
 		
@@ -99,11 +102,42 @@ public class EditCourseUI extends JPanel {
         popupMenu.add(menuItem);
         
         btnnext = new JButton("");
+        btnnext.setVisible(false);
         btnnext.setBorder(BorderFactory.createEmptyBorder());
         btnnext.setIcon(new ImageIcon("img\\sysAdmin\\Next.png"));
         btnnext.setBackground(Color.WHITE);
         btnnext.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent arg0) {
+        		if(list1.getCheckBoxListSelectedIndex() == -1)
+				{
+        			
+        			JOptionPane.showMessageDialog(null, "There is no Courses selected !","Error Input",JOptionPane.ERROR_MESSAGE);
+        			
+				}
+        		else
+        		{
+        			
+        			((sysAdminHomeUI)((HomeUI)Client.client.clientGUI).innerpanel).contentPane.remove(((sysAdminHomeUI)((HomeUI)Client.client.clientGUI).innerpanel).innerpanel);
+    				((EditCourseUI)((sysAdminHomeUI)((HomeUI)Client.client.clientGUI).innerpanel).innerpanel).removeAll();
+    				((sysAdminHomeUI)((HomeUI)Client.client.clientGUI).innerpanel).innerpanel = new EditCourseNextUI();
+    				((sysAdminHomeUI)((HomeUI)Client.client.clientGUI).innerpanel).contentPane.add(((sysAdminHomeUI)((HomeUI)Client.client.clientGUI).innerpanel).innerpanel);
+    				((EditCourseNextUI)((sysAdminHomeUI)((HomeUI)Client.client.clientGUI).innerpanel).innerpanel).coursesedit.clear();
+    				((EditCourseNextUI)((sysAdminHomeUI)((HomeUI)Client.client.clientGUI).innerpanel).innerpanel).index = 0;
+    				Client.client.handleMessageFromClientUI(new Message("SELECT * FROM teaching_unit",QTypes.GetTeachunits2));
+    				//Client.client.handleMessageFromClientUI(new Message("SELECT course_id, course_name FROM courses",QTypes.GetAllCoursestoButinChechboxlist));
+    				String[] prec = Arrays.copyOf(list1.getCheckBoxListSelectedValues(), list1.getCheckBoxListSelectedValues().length, String[].class);
+    				((EditCourseNextUI)((sysAdminHomeUI)((HomeUI)Client.client.clientGUI).innerpanel).innerpanel).size = prec.length;
+					for(String x : prec)
+					{
+						x = x.substring(0, 5);
+						Client.client.handleMessageFromClientUI(new Message("SELECT * FROM courses WHERE course_id="+x,QTypes.GetspaceficcourseDetails));
+						//System.out.print(""+x+"\n");
+						/*Client.client.handleMessageFromClientUI(new Message("INSERT INTO pre_courses (course_id,pre_course)"
+								+ "VALUES ('" + course.getCourse_ID() +"', '"+ x +"' )",QTypes.AddnewPreCourse));*/
+					}
+    				//Client.client.handleMessageFromClientUI(new Message("SELECT course_id, course_name FROM courses",QTypes.GetAllCoursesids));
+    				((sysAdminHomeUI)((HomeUI)Client.client.clientGUI).innerpanel).resizesysAdminHome();
+        		}
         	}
         });
         
@@ -116,6 +150,31 @@ public class EditCourseUI extends JPanel {
         lblstatus.setFont(new Font("Comic Sans MS", Font.BOLD, 14));
         lblstatus.setBounds(12, 293, 240, 26);
         add(lblstatus);
+        
+        btnclose = new JButton("");
+        btnclose.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		int reply = JOptionPane.showConfirmDialog(null, "Are You Sure you wanna colse this Panel", "Verify your option", JOptionPane.YES_NO_OPTION);
+		        if (reply == JOptionPane.YES_OPTION) {
+		        	((sysAdminHomeUI)((HomeUI)Client.client.clientGUI).innerpanel).contentPane.remove(((sysAdminHomeUI)((HomeUI)Client.client.clientGUI).innerpanel).innerpanel);
+		        	((EditCourseUI)((sysAdminHomeUI)((HomeUI)Client.client.clientGUI).innerpanel).innerpanel).removeAll();
+		        	((sysAdminHomeUI)((HomeUI)Client.client.clientGUI).innerpanel).innerpanel = new WelcomeUI();
+					((sysAdminHomeUI)((HomeUI)Client.client.clientGUI).innerpanel).contentPane.add(((sysAdminHomeUI)((HomeUI)Client.client.clientGUI).innerpanel).innerpanel);
+					((sysAdminHomeUI)((HomeUI)Client.client.clientGUI).innerpanel).collapseAll(((sysAdminHomeUI)((HomeUI)Client.client.clientGUI).innerpanel).mytree.tree);
+		        	((sysAdminHomeUI)((HomeUI)Client.client.clientGUI).innerpanel).savemenu="";
+		        	((sysAdminHomeUI)((HomeUI)Client.client.clientGUI).innerpanel).pressed=false;
+					//Client.client.handleMessageFromClientUI(new Message("SELECT course_id, course_name FROM courses",QTypes.GetAllCoursesids));
+					((sysAdminHomeUI)((HomeUI)Client.client.clientGUI).innerpanel).resizesysAdminHome();
+		        }
+        	}
+        });
+        btnclose.setIcon(new ImageIcon("img\\sysAdmin\\close-icon-31.png"));
+        btnclose.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
+        btnclose.setFocusable(false);
+        btnclose.setBorder(BorderFactory.createEmptyBorder());
+        btnclose.setBackground(Color.WHITE);
+        btnclose.setBounds(352, 0, 87, 69);
+        add(btnclose);
 	}
 	
 	

@@ -28,6 +28,13 @@ public class QTypes {
 	public static int ShowinTXTallCourses = 206;
 	public static int GetAllCoursesids1 = 207;
 	public static int Getspaceficcoursename1 = 208;
+	public static int GetspaceficcourseDetails = 209;
+	public static int GetTeachunits2 = 210;
+	public static int GetAllCoursestoButinChechboxlist = 211;
+	public static int Getspaceficcoursenameforedit = 212;
+	public static int updateCourse = 213;
+	public static int deletepreCourses = 214;
+	public static int GetTeachunitsUI = 215;
 	public static int getcurrenthours=700;
 	public static int EnteringHours=701;
 	public static int GetTeachunits1 = 702;

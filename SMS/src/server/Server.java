@@ -552,6 +552,205 @@ public class Server extends AbstractServer {
 				  }
 				  break;
 				  
+				  
+			  case 209:
+				  rs = stmt.executeQuery(((Message) msg).GetQuery());
+				  ArrayList<Course> allcourses111=new ArrayList<Course>();
+				  ArrayList<String> prec111=new ArrayList<String>();
+				  Course course111;
+				  String precc111 [] =null;
+				  if(rs.next()) { // Checks for any results and moves cursor to first row,
+					    do { // Use 'do...while' to process the first row, while continuing to process remaining rows
+					    	course111 = new Course (rs.getString(1), rs.getString(2), rs.getString(3), rs.getFloat(4), null);
+					    	allcourses111.add(course111);
+					    } while (rs.next());
+				  for(int i=0 ; i<allcourses111.size() ; i++)
+				  {
+					  prec111.clear();
+					  rs = stmt.executeQuery("SELECT * FROM pre_courses WHERE course_id=" + allcourses111.get(i).getCourse_ID());
+					  if(rs.next()) {
+			    		  do {
+			    			  prec111.add(rs.getString(2));
+			    		  }while (rs.next());
+			    		  precc111 = prec111.toArray(new String[prec111.size()]);
+			    		  course111.setPreCourses(precc111);
+			    	   }
+				  }
+					    Request req209=new Request(course111,QTypes.GetspaceficcourseDetails);
+					    try{
+							  client.sendToClient(req209);
+						  }catch(IOException ex){
+							 //Do Somthing
+							  serv.display("["+dtf.format(now)+"] Error Sending back The Courses details statment!");
+						  }
+				  }
+				  else 
+				  {
+					  Request req209=new Request(false,QTypes.GetspaceficcourseDetails);
+					  try{
+						  client.sendToClient(req209);
+					  }catch(IOException ex){
+						 //Do Somthing
+						  serv.display("["+dtf.format(now)+"] Error Sending back false statment!");
+					  }
+				  }
+				  break;
+				  
+			  case 210:
+				  rs = stmt.executeQuery(((Message) msg).GetQuery());
+				  if(rs.next()) { // Checks for any results and moves cursor to first row,
+					  ArrayList<TeachUnit> alltu=new ArrayList<TeachUnit>();
+					    do { // Use 'do...while' to process the first row, while continuing to process remaining rows
+					    	alltu.add(new TeachUnit (rs.getString(1), rs.getString(2)));
+					    	//System.out.print(alltu[i].getTeachUnit_ID() + " " +  alltu[i].getTeachUnit_Name() +"\n and hereeee");
+					    } while (rs.next());
+					    Request req210=new Request(alltu,QTypes.GetTeachunits2);
+					    try{
+							  client.sendToClient(req210);
+						  }catch(IOException ex){
+							 //Do Somthing
+							  serv.display("["+dtf.format(now)+"] Error Sending back Teaching units statment!");
+						  }
+					}
+				  else 
+				  {
+					  Request req210=new Request(false,QTypes.GetTeachunits2);
+					  try{
+						  client.sendToClient(req210);
+					  }catch(IOException ex){
+						 //Do Somthing
+						  serv.display("["+dtf.format(now)+"] Error Sending back false statment!");
+					  }
+				  }
+				  break;
+				  
+			  case 211:
+				  rs = stmt.executeQuery(((Message) msg).GetQuery());
+				  if(rs.next()) { // Checks for any results and moves cursor to first row,
+					  ArrayList<String> allcourses=new ArrayList<String>();
+					    do { // Use 'do...while' to process the first row, while continuing to process remaining rows
+					    	allcourses.add(rs.getString(1) +" - " + rs.getString(2));
+					    	//System.out.print(alltu[i].getTeachUnit_ID() + " " +  alltu[i].getTeachUnit_Name() +"\n and hereeee");
+					    } while (rs.next());
+					    Request req211=new Request(allcourses,QTypes.GetAllCoursestoButinChechboxlist);
+					    try{
+							  client.sendToClient(req211);
+						  }catch(IOException ex){
+							 //Do Somthing
+							  serv.display("["+dtf.format(now)+"] Error Sending back Teaching units statment!");
+						  }
+					}
+				  else 
+				  {
+					  Request req211=new Request(false,QTypes.GetAllCoursestoButinChechboxlist);
+					  try{
+						  client.sendToClient(req211);
+					  }catch(IOException ex){
+						 //Do Somthing
+						  serv.display("["+dtf.format(now)+"] Error Sending back false statment!");
+					  }
+				  }
+				  break;
+				  
+			  case 212:
+				  rs = stmt.executeQuery(((Message) msg).GetQuery());
+				  String rretmsa= ((Message) msg).GetQuery().substring(((Message) msg).GetQuery().length() - 5, ((Message) msg).GetQuery().length());
+				  if(rs.next()) { // Checks for any results and moves cursor to first row,
+						  rretmsa = rretmsa + " - "+rs.getString(1);
+					    Request req212=new Request(rretmsa,QTypes.Getspaceficcoursenameforedit);
+					    try{
+							  client.sendToClient(req212);
+						  }catch(IOException ex){
+							 //Do Somthing
+							  serv.display("["+dtf.format(now)+"] Error Sending back Teaching units statment!");
+						  }
+				 }
+				  else 
+				  {
+					  Request req212=new Request(false,QTypes.Getspaceficcoursenameforedit);
+					  try{
+						  client.sendToClient(req212);
+					  }catch(IOException ex){
+						 //Do Somthing
+						  serv.display("["+dtf.format(now)+"] Error Sending back false statment!");
+					  }
+				  }
+				  break;
+				  
+			  case 213:
+				  try {
+					  stmt.executeUpdate(((Message) msg).GetQuery());
+					  Request req213=new Request(true,QTypes.updateCourse);
+					  try{
+						  client.sendToClient(req213);
+					  }catch(IOException ex){
+						 //Do Somthing
+						  serv.display("["+dtf.format(now)+"] Error Sending back false statment!");
+					  }
+						//System.out.println("Record is inserted into DBUSER table!");
+					} catch (SQLException e) {
+						serv.display("["+dtf.format(now)+"] Error Insert new Course!");
+						Request req213=new Request(false,QTypes.updateCourse);
+						try{
+							  client.sendToClient(req213);
+						  }catch(IOException ex){
+							 //Do Somthing
+							  serv.display("["+dtf.format(now)+"] Error Sending back false statment!");
+						  }
+					}
+				  break;
+				  
+			  case 214:
+				  try {
+					  stmt.execute(((Message) msg).GetQuery());
+					  Request req214=new Request(true,QTypes.deletepreCourses);
+					  try{
+						  client.sendToClient(req214);
+					  }catch(IOException ex){
+						 //Do Somthing
+						  serv.display("["+dtf.format(now)+"] Error Sending back false statment!");
+					  }
+						//System.out.println("Record is inserted into DBUSER table!");
+					} catch (SQLException e) {
+						serv.display("["+dtf.format(now)+"] Error Insert new Course!");
+						Request req214=new Request(false,QTypes.deletepreCourses);
+						try{
+							  client.sendToClient(req214);
+						  }catch(IOException ex){
+							 //Do Somthing
+							  serv.display("["+dtf.format(now)+"] Error Sending back false statment!");
+						  }
+					}
+				  break;
+				  
+			  case 215:
+				  rs = stmt.executeQuery(((Message) msg).GetQuery());
+				  if(rs.next()) { // Checks for any results and moves cursor to first row,
+					  ArrayList<TeachUnit> alltu=new ArrayList<TeachUnit>();
+					  int i =0;
+					    do { // Use 'do...while' to process the first row, while continuing to process remaining rows
+					    	alltu.add(new TeachUnit (rs.getString(1), rs.getString(2)));
+					    } while (rs.next());
+					    Request req215=new Request(alltu,QTypes.GetTeachunitsUI);
+					    try{
+							  client.sendToClient(req215);
+						  }catch(IOException ex){
+							 //Do Somthing
+							  serv.display("["+dtf.format(now)+"] Error Sending back Teaching units statment!");
+						  }
+					}
+				  else 
+				  {
+					  Request req215=new Request(false,QTypes.GetTeachunitsUI);
+					  try{
+						  client.sendToClient(req215);
+					  }catch(IOException ex){
+						 //Do Somthing
+						  serv.display("["+dtf.format(now)+"] Error Sending back false statment!");
+					  }
+				  }
+				  break;
+				  
 				//System-Administrator	Cases
 				//Teacher
 			  case 700:
